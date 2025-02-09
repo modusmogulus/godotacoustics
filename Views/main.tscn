@@ -1,27 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq5w646ihx40u"]
-
-[ext_resource type="PackedScene" uid="uid://duu4kij01s5vk" path="res://addons/ircalc/pressure_field.tscn" id="1_8r4uk"]
+[gd_scene load_steps=2 format=3 uid="uid://dq5w646ihx40u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ow4sj"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11097.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23495.3, 0)
 linear_velocity = Vector3(0, -97.9959, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_ow4sj")
-
-[node name="PressureField" parent="." instance=ExtResource("1_8r4uk")]
-physics_interpolation_mode = 2
-auto_translate_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.13222, 7.09552, 8.54701)
-collision_layer = 2048
-
-[node name="PressureField2" parent="." instance=ExtResource("1_8r4uk")]
-physics_interpolation_mode = 2
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.037, 7.93336, 9.52552)
-collision_layer = 2048

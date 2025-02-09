@@ -2,6 +2,7 @@
 extends CharacterBody3D
 var vel_fixed: Vector3
 var simu: bool = false
+var soundspeed: float = 34.30
 # =================== The laws for this scene ========
 #    
 #    (1)
@@ -21,8 +22,6 @@ var simu: bool = false
 #
 #======================= * ==========================
 
-func fix_velocity(vel: Vector3) -> Vector3:
-	return clamp(vel.normalized() * 4096, Vector3(-1.0, -1.0, -1.0), Vector3(1.0, 1.0, 1.0))*IRCalcGlobalScene.soundspeed
 
 func set_simulating(value: bool):
 	simu = value
@@ -34,8 +33,11 @@ func _exit_tree() -> void:
 	
 func _physics_process(delta: float) -> void:
 	for body in $Forcefield.get_overlapping_areas():
-		velocity += (global_position - body.global_position)
-		
-	velocity = fix_velocity(velocity)
+		if body != $Forcefield:
+			velocity += (global_position - body.global_position)
+	
+	#velocity = clamp(velocity, Vector3(-1.0, -1.0, -1.0), Vector3(1.0, 1.0, 1.0))
+	velocity = velocity * 4096
+	velocity = velocity.normalized() * soundspeed
 	
 	if simu == true: move_and_slide() 
