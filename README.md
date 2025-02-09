@@ -1,21 +1,17 @@
 Godot plugin for acoustics calculation. Does not work at all, yet!
------------------------------------------------------------------
 
 
-
-
-Modu's domainless hybrid model for acoustics
+<h1> Modu's domainless hybrid model for acoustics </h1>
 ---------------------------------------------
 
-What is it?
+<h3> What is it? </h3>
 
 Instead of rays or volumes, the wave behaviour is simulated trough moving pressure fields with one size, position, pressure, phase and velocity for each instance
 This allows for simulation of both open spaces and indoor scenes while (finally) simulation diffusion. Think of the pressure fields as singular particles. 
 
-Wouldn't this be just inefficient ray casting with lazy physics engine code?
+<h3> Wouldn't this be just inefficient ray casting with lazy physics engine code? </h3>
 
 No. This differs from typical ray based methods by really simulating wave diffusion. The fields have 3 simple laws:
-
 =================== The laws =======================
 
 1. All pressure fields have fixed magnitude of velocity, which should never change (speed of sound in air)
