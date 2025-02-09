@@ -6,7 +6,7 @@ Godot plugin for acoustics calculation. Does not work at all, yet!
 
 <h3> What is it? </h3>
 
-Instead of rays or volumes, the wave behaviour is simulated trough moving pressure fields with one size, position, pressure, phase and velocity for each instance
+Instead of rays or volumes, the wave behaviour is simulated trough moving pressure fields with one size, position, pressure, phase and velocity for each instance.
 This allows for simulation of both open spaces and indoor scenes while (finally) simulation diffusion. Think of the pressure fields as singular particles. 
 
 <h3> Wouldn't this be just inefficient ray casting with lazy physics engine code? </h3>
