@@ -51,10 +51,6 @@ text = "Count"
 layout_mode = 2
 text = "Soft diffus."
 
-[node name="CountLabel3" type="Label" parent="dock_node/HBoxContainer/Labels"]
-layout_mode = 2
-text = "Speed m/s"
-
 [node name="Handles" type="VBoxContainer" parent="dock_node/HBoxContainer"]
 layout_mode = 2
 
@@ -90,9 +86,21 @@ value = 30.0
 rounded = true
 update_on_text_changed = true
 
-[node name="SpeedSpin" type="SpinBox" parent="dock_node/HBoxContainer/Handles"]
+[node name="CountLabel3" type="Label" parent="dock_node"]
+layout_mode = 2
+offset_left = 9.0
+offset_top = 250.0
+offset_right = 95.0
+offset_bottom = 273.0
+text = "Speed m/s"
+
+[node name="SpeedSpin" type="SpinBox" parent="dock_node"]
 modulate = Color(0, 0.686275, 0, 1)
 layout_mode = 2
+offset_left = 10.0
+offset_top = 281.0
+offset_right = 159.0
+offset_bottom = 306.0
 theme = SubResource("Theme_cw0en")
 theme_type_variation = &"LCD"
 min_value = 0.1
