@@ -1,14 +1,18 @@
 [gd_scene load_steps=2 format=3 uid="uid://dq5w646ihx40u"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ow4sj"]
+[ext_resource type="PackedScene" uid="uid://ou7yhupg37p5" path="res://addons/ircalc/test/debug_pfield_cluster.tscn" id="1_8r4uk"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23495.3, 0)
-linear_velocity = Vector3(0, -97.9959, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.3869, 0, 0)
+use_collision = true
+size = Vector3(130.874, 33.17, 64.26)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.3869, 90.4164, 0)
+use_collision = true
+size = Vector3(130.874, 33.17, 64.26)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("BoxShape3D_ow4sj")
+[node name="debug_pfield_cluster" parent="." instance=ExtResource("1_8r4uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.5001, 33.5908, 6.87968)

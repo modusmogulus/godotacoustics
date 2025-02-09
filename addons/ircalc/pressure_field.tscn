@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://u5itcuk0qaoj" path="res://addons/ircalc/pressure_field.gd" id="1_c2dkg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ccqrm"]
-radius = 0.1
+radius = 0.835
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c2dkg"]
-radius = 4.0
+radius = 75.323
 
 [node name="PressureField" type="CharacterBody3D"]
 process_mode = 3
-collision_mask = 2048
+collision_mask = 2049
 motion_mode = 1
 script = ExtResource("1_c2dkg")
 

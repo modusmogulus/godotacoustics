@@ -32,12 +32,11 @@ func _exit_tree() -> void:
 	IRCalcGlobalScene.unregister_pressure_field(self)
 	
 func _physics_process(delta: float) -> void:
-	for body in $Forcefield.get_overlapping_areas():
-		if body != $Forcefield:
-			velocity += (global_position - body.global_position)
-	
+	for area in $Forcefield.get_overlapping_areas():
+		if area != $Forcefield:
+			velocity += (global_position - area.global_position)
 	#velocity = clamp(velocity, Vector3(-1.0, -1.0, -1.0), Vector3(1.0, 1.0, 1.0))
 	velocity = velocity * 4096
 	velocity = velocity.normalized() * soundspeed
 	
-	if simu == true: move_and_slide() 
+	if simu == true: move_and_slide()

@@ -111,3 +111,111 @@ transform = Transform3D(-0.756097, 0.247648, 0.605795, 0.0230408, -0.914995, 0.4
 
 [node name="PressureField" parent="origin18" instance=ExtResource("1_b3v5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin19" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.128986, -0.991646, 0, 0.991646, 0.128986, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin19" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin20" type="Node3D" parent="."]
+transform = Transform3D(0.644484, 1.17272e-08, -0.764618, -0.758231, 0.128986, -0.6391, 0.098625, 0.991647, 0.0831294, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin20" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin21" type="Node3D" parent="."]
+transform = Transform3D(-0.681449, 0, -0.731865, -0.725751, 0.128986, 0.675757, 0.0944004, 0.991647, -0.0878974, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin21" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin22" type="Node3D" parent="."]
+transform = Transform3D(-0.911109, 0, 0.412166, 0.408723, 0.128986, 0.903498, -0.0531636, 0.991646, -0.11752, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin22" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin23" type="Node3D" parent="."]
+transform = Transform3D(-0.18781, 0, 0.982205, 0.974, 0.128986, 0.186241, -0.126691, 0.991646, -0.0242249, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin23" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin24" type="Node3D" parent="."]
+transform = Transform3D(0.496474, -4.3567e-09, 0.868052, 0.860801, 0.128986, -0.492327, -0.111967, 0.991646, 0.0640382, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin24" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin25" type="Node3D" parent="."]
+transform = Transform3D(0.83238, 0, 0.554205, 0.549576, 0.128986, -0.825427, -0.0714847, 0.991646, 0.107365, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin25" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin26" type="Node3D" parent="."]
+transform = Transform3D(0.445484, 0.84473, 0.296607, 0.458881, 0.0690324, -0.885812, -0.768747, 0.530722, -0.356878, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin26" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin27" type="Node3D" parent="."]
+transform = Transform3D(-0.439292, 0.190755, 0.877859, 0.463762, 0.885068, 0.0397501, -0.769382, 0.424578, -0.477268, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin27" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin28" type="Node3D" parent="."]
+transform = Transform3D(-0.683068, -0.691302, 0.235627, -0.286575, 0.550436, 0.784153, -0.671784, 0.468105, -0.574095, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin28" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin29" type="Node3D" parent="."]
+transform = Transform3D(-0.175897, -0.768849, -0.614762, -0.773896, -0.277959, 0.569056, -0.608397, 0.575856, -0.546116, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin29" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin30" type="Node3D" parent="."]
+transform = Transform3D(0.610003, 0.115709, -0.783906, -0.453013, -0.760745, -0.464807, -0.650135, 0.638653, -0.411639, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin30" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin31" type="Node3D" parent="."]
+transform = Transform3D(0.646621, 0.75514, -0.107907, 0.202605, -0.306396, -0.930093, -0.735413, 0.579555, -0.351118, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin31" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin32" type="Node3D" parent="."]
+transform = Transform3D(-0.954863, -0.143602, -0.260029, 0.296847, -0.493368, -0.8176, -0.010881, -0.857885, 0.513726, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin32" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin33" type="Node3D" parent="."]
+transform = Transform3D(0.29277, -0.379041, -0.877846, 0.951351, 0.0232833, 0.30723, -0.096014, -0.925087, 0.367417, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin33" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin34" type="Node3D" parent="."]
+transform = Transform3D(0.999421, 0.0332414, 0.00720692, -0.0163042, 0.282234, 0.959207, 0.0298514, -0.958769, 0.282612, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin34" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin35" type="Node3D" parent="."]
+transform = Transform3D(0.419254, 0.377416, 0.825702, -0.896325, 0.0274987, 0.442544, 0.144318, -0.925635, 0.349816, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin35" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
+
+[node name="origin36" type="Node3D" parent="."]
+transform = Transform3D(-0.756097, 0.247648, 0.605795, -0.645618, -0.43388, -0.628431, 0.107212, -0.866267, 0.487942, 0, -4.60659e-10, -0.00475192)
+
+[node name="PressureField" parent="origin36" instance=ExtResource("1_b3v5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95822)
