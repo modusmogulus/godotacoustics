@@ -11,7 +11,7 @@ This allows for simulation of both open spaces and indoor scenes while (finally)
 
 <h3> Wouldn't this be just inefficient ray casting with lazy physics engine code? </h3>
 
-No. This differs from typical ray based methods by really simulating wave diffusion. The fields have 3 simple laws: <p>
+No. This differs from typical ray based methods by really simulating wave diffusion (which image source methods fail at).<br> The fields have 3 simple laws: <p>
 =================== The laws =======================
 
 1. All pressure fields have fixed magnitude of velocity, which should never change (speed of sound in air)
@@ -22,5 +22,6 @@ No. This differs from typical ray based methods by really simulating wave diffus
 3. Among time, pressure should decrease linearly while the size of the field/wavelength scales up (which filters off high frequencies caused by air absorption)
   
 ======================= * ==========================
-
-
+<h3>Why doesn't this use waveguide based simulation then?</h3>
+<br>
+It is pretty expensive to compute and difficult to implement, it's also not suitable for calculating open spaces as some domain is still required
