@@ -7,7 +7,7 @@
 [node name="Node3D" type="Node3D"]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -166.593, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11097.4, 0)
 linear_velocity = Vector3(0, -97.9959, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
@@ -16,4 +16,12 @@ linear_velocity = Vector3(0, -97.9959, 0)
 shape = SubResource("BoxShape3D_ow4sj")
 
 [node name="PressureField" parent="." instance=ExtResource("1_8r4uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0314758, 0, -0.0379593)
+physics_interpolation_mode = 2
+auto_translate_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.13222, 7.09552, 8.54701)
+collision_layer = 2048
+
+[node name="PressureField2" parent="." instance=ExtResource("1_8r4uk")]
+physics_interpolation_mode = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.037, 7.93336, 9.52552)
+collision_layer = 2048

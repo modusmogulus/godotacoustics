@@ -9,6 +9,8 @@ func set_sim_timer(timer: Timer):
 	sim_timer = timer
 	
 func start_simulation():
+	for pf in pressurefields:
+		pf.set_simulating(true)
 	PhysicsServer3D.set_active(true)
 	sim_timer.start()
 	
@@ -16,7 +18,7 @@ func stop_simulation():
 	sim_timer.stop()
 	PhysicsServer3D.set_active(false)
 	for pf in pressurefields:
-		pf.velocity = Vector3.ZERO
+		pf.set_simulating(false)
 
 func set_sim_duration(duration: float):
 	sim_timer.wait_time = duration
