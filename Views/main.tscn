@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dq5w646ihx40u"]
+[gd_scene load_steps=2 format=3 uid="uid://dq5w646ihx40u"]
+
+[ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="1_8r4uk"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -11,3 +13,6 @@ size = Vector3(130.874, 33.17, 64.26)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.0394, 84.3536, -3.37859)
 use_collision = true
 size = Vector3(130.874, 33.17, 64.26)
+
+[node name="AcousticEmitter" parent="." instance=ExtResource("1_8r4uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7406, 13.616, -5.4712)

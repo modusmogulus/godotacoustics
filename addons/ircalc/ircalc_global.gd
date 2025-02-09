@@ -5,16 +5,24 @@ var sim_timer
 var pressurefields = []
 var emitters = []
 var soundspeed: float = 1/343 #m/s
-
+var emitter_count = 16
 
 func user_req_prepare():
 	for ac_em in emitters:
-		ac_em.create_pfields(8)
+		ac_em.create_pfields(emitter_count)
 
 func set_sim_timer(timer: Timer):
 	sim_timer = timer
+
+func set_emitter_count(count: int):
+	emitter_count = count
 	
+func get_emitter_count() -> int:
+	return emitter_count
+
 func start_simulation():
+	for ac_em in emitters:
+		ac_em.create_pfields(emitter_count)
 	for pf in pressurefields:
 		pf.set_simulating(true)
 	PhysicsServer3D.set_active(true)
@@ -25,6 +33,7 @@ func stop_simulation():
 	PhysicsServer3D.set_active(false)
 	for pf in pressurefields:
 		pf.set_simulating(false)
+		pf.queue_free()
 
 func set_sim_duration(duration: float):
 	sim_timer.wait_time = duration

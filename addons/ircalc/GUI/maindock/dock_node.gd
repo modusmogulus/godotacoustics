@@ -2,7 +2,9 @@
 extends Control
 
 func _on_button_start_sim_pressed() -> void:
+	
 	IRCalcGlobalScene.sim_timer = $Timer
+	IRCalcGlobalScene.set_emitter_count(floor($HBoxContainer/Handles/CountSpin.value))
 	IRCalcGlobalScene.set_sim_duration($HBoxContainer/Handles/DurationSpin.value)
 	IRCalcGlobalScene.start_simulation()
 	

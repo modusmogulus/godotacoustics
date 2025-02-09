@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://d2tfwr4ndnpm" path="res://addons/ircalc/acoustic_emitter.gd" id="1_vmfjg"]
 
 [node name="AcousticEmitter" type="Node3D"]
+top_level = true
 script = ExtResource("1_vmfjg")
