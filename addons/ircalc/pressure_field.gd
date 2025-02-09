@@ -21,8 +21,8 @@ var vel_fixed: Vector3
 #
 #======================= * ==========================
 
-func fix_velocity(vel: Vector3):
-	return clamp(vel.normalized() * 4096, -1.0, 1.0)*IRCalcGlobalScene.soundspeed
+func fix_velocity(vel: Vector3) -> Vector3:
+	return clamp(vel.normalized() * 4096, Vector3(-1.0, -1.0, -1.0), Vector3(1.0, 1.0, 1.0))*IRCalcGlobalScene.soundspeed
 	
 func _enter_tree() -> void:
 	IRCalcGlobalScene.register_pressure_field(self)
@@ -31,6 +31,7 @@ func _exit_tree() -> void:
 	
 func _physics_process(delta: float) -> void:
 	for body in $Forcefield.get_overlapping_areas():
-		velocity += (global_position - body.global_position)*343.0
-	velocity = fix_velocity(velocity)
+		velocity += (global_position - body.global_position)
+	velocity = fix_velocity(velocity)*delta
+	
 	move_and_slide() 

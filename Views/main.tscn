@@ -1,13 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq5w646ihx40u"]
+[gd_scene load_steps=3 format=3 uid="uid://dq5w646ihx40u"]
+
+[ext_resource type="PackedScene" uid="uid://duu4kij01s5vk" path="res://addons/ircalc/pressure_field.tscn" id="1_8r4uk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ow4sj"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-linear_velocity = Vector3(0, -97.9832, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -166.593, 0)
+linear_velocity = Vector3(0, -97.9959, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_ow4sj")
+
+[node name="PressureField" parent="." instance=ExtResource("1_8r4uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0314758, 0, -0.0379593)

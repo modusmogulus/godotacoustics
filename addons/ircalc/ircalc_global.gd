@@ -3,7 +3,8 @@ extends Node
 
 var sim_timer
 var pressurefields = []
-var soundspeed: float = 343 #m/s
+var soundspeed: float = 1/343 #m/s
+
 func set_sim_timer(timer: Timer):
 	sim_timer = timer
 	
@@ -14,6 +15,8 @@ func start_simulation():
 func stop_simulation():
 	sim_timer.stop()
 	PhysicsServer3D.set_active(false)
+	for pf in pressurefields:
+		pf.velocity = Vector3.ZERO
 
 func set_sim_duration(duration: float):
 	sim_timer.wait_time = duration
