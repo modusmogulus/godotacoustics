@@ -30,7 +30,7 @@ collision_mask = 2049
 size = Vector3(801.12, 134.185, 800)
 
 [node name="AcousticEmitter" parent="." instance=ExtResource("1_8r4uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9505, -40.318, -171.144)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9505, 404.965, -171.144)
 
 [node name="Waveguide" parent="." instance=ExtResource("2_y1b1f")]
 reduce_update_rate = 10
