@@ -4,6 +4,7 @@ var vel_fixed: Vector3
 var simu: bool = false
 var soundspeed: float = 343
 var pressure = 1.0
+var soften_diffuse: float
 
 # =================== The laws for this scene ========
 #    
@@ -27,8 +28,7 @@ var pressure = 1.0
 
 func set_simulating(value: bool):
 	simu = value
-	if simu == true:
-		$wavetable.play()
+	soften_diffuse = IRCalcGlobalScene.soften_diffuse
 
 func _enter_tree() -> void:
 	IRCalcGlobalScene.register_pressure_field(self)
@@ -36,6 +36,9 @@ func _exit_tree() -> void:
 	IRCalcGlobalScene.unregister_pressure_field(self)
 	
 func _physics_process(delta: float) -> void:
+	if simu == false: return
+	
+	$Soundfield.scale += Vector3(soften_diffuse*delta, soften_diffuse*delta, soften_diffuse*delta)
 	for area in $Forcefield.get_overlapping_areas():
 		if area != $Forcefield:
 			velocity += (global_position - area.global_position)
@@ -45,4 +48,4 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity * 4096
 	velocity = velocity.normalized() * soundspeed
 	
-	if simu == true: move_and_slide()
+	move_and_slide()

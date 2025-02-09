@@ -1,12 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://duu4kij01s5vk"]
+[gd_scene load_steps=8 format=3 uid="uid://duu4kij01s5vk"]
 
 [ext_resource type="Script" uid="uid://u5itcuk0qaoj" path="res://addons/ircalc/pressure_field.gd" id="1_c2dkg"]
+[ext_resource type="Shader" uid="uid://c53bjxhpmlo3f" path="res://addons/ircalc/3rdparty/shaders/shield.gdshader" id="2_6evb8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ccqrm"]
 radius = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c2dkg"]
-radius = 75.323
+radius = 17.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6evb8"]
+radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pw704"]
+render_priority = 0
+shader = ExtResource("2_6evb8")
+shader_parameter/color1 = Color(0, 0, 1, 1)
+shader_parameter/color2 = Color(1, 1, 1, 0)
+shader_parameter/threshold = 0.47
+shader_parameter/fresnel_sharpness = 11.53
+
+[sub_resource type="SphereMesh" id="SphereMesh_c2dkg"]
+material = SubResource("ShaderMaterial_pw704")
+radius = 17.154
+height = 33.533
+radial_segments = 4
+rings = 2
 
 [node name="PressureField" type="CharacterBody3D"]
 process_mode = 3
@@ -26,3 +45,13 @@ collision_mask = 2048
 [node name="Bounds" type="CollisionShape3D" parent="Forcefield"]
 shape = SubResource("SphereShape3D_c2dkg")
 debug_color = Color(0.222327, 0.510533, 1, 1)
+
+[node name="Soundfield" type="Area3D" parent="."]
+
+[node name="SoundBounds" type="CollisionShape3D" parent="Soundfield"]
+transform = Transform3D(170.82, 0, 0, 0, 170.82, 0, 0, 0, 170.82, 0, 0, 0)
+shape = SubResource("SphereShape3D_6evb8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Soundfield"]
+mesh = SubResource("SphereMesh_c2dkg")
+skeleton = NodePath("../SoundBounds")

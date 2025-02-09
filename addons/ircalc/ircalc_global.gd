@@ -5,7 +5,7 @@ var sim_timer
 var pressurefields = []
 var emitters = []
 var ac_listeners = []
-
+var soften_diffuse: float = 10.0
 var soundspeed: float = 1/343 #m/s
 var emitter_count = 16
 
@@ -16,6 +16,9 @@ func user_req_prepare():
 func set_sim_timer(timer: Timer):
 	sim_timer = timer
 
+func set_soften_diffuse(amount: float):
+	soften_diffuse = amount
+
 func set_emitter_count(count: int):
 	emitter_count = count
 	
@@ -25,8 +28,8 @@ func get_emitter_count() -> int:
 func start_simulation():
 	for lis in ac_listeners:
 		lis.start_rec()
-	for ac_em in emitters:
-		ac_em.create_pfields(emitter_count)
+	#for ac_em in emitters:
+	#	ac_em.create_pfields(emitter_count)
 	for pf in pressurefields:
 		pf.set_simulating(true)
 		
@@ -51,25 +54,25 @@ func _on_simulation_timer_timeout() -> void:
 	
 func register_pressure_field(field_instance):
 	pressurefields.append(field_instance)
-	print(str(pressurefields))
+	#print(str(pressurefields))
 	
 func unregister_pressure_field(field_instance):
 	pressurefields.erase(field_instance)
-	print(str(pressurefields))
+	#print(str(pressurefields))
 	
 func register_acoustic_emitter(ac_em):
 	emitters.append(ac_em)
-	print(str(ac_em))
+	#print(str(ac_em))
 	
 func register_listener(lis):
 	ac_listeners.append(lis)
-	print(str(ac_listeners))
+	#print(str(ac_listeners))
 
 func unregister_listener(lis):
 	ac_listeners.erase(lis)
-	print(str(ac_listeners))
+	#print(str(ac_listeners))
 
 func unregister_acoustic_emitter(ac_em):
 	emitters.erase(ac_em)
-	print(str(emitters))
+	#print(str(emitters))
 	

@@ -39,6 +39,10 @@ text = "Duration    "
 layout_mode = 2
 text = "Count"
 
+[node name="CountLabel2" type="Label" parent="dock_node/HBoxContainer/Labels"]
+layout_mode = 2
+text = "Soft diffus."
+
 [node name="Handles" type="VBoxContainer" parent="dock_node/HBoxContainer"]
 layout_mode = 2
 
@@ -62,6 +66,18 @@ value = 16.0
 rounded = true
 update_on_text_changed = true
 
+[node name="DiffuseSpin" type="SpinBox" parent="dock_node/HBoxContainer/Handles"]
+modulate = Color(0, 0.686275, 0, 1)
+layout_mode = 2
+theme = ExtResource("2_x7ui4")
+theme_type_variation = &"LCD"
+min_value = 4.0
+max_value = 512.0
+step = 0.1
+value = 30.0
+rounded = true
+update_on_text_changed = true
+
 [node name="ButtonSpawn" type="Button" parent="dock_node" groups=["Acoustics"]]
 layout_mode = 0
 offset_top = 324.0
@@ -71,7 +87,6 @@ theme = ExtResource("2_x7ui4")
 theme_type_variation = &"Regular"
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7ui4")
-disabled = true
 text = "Spawn pressurefields"
 
 [node name="ButtonStartSim2" type="Button" parent="dock_node" groups=["Acoustics"]]

@@ -17,4 +17,4 @@ collision_mask = 2049
 size = Vector3(800, 20.3, 800)
 
 [node name="AcousticEmitter" parent="." instance=ExtResource("1_8r4uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.6474, 32.0987, 23.3759)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.887, 42.3437, -77.5761)

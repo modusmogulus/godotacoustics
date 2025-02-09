@@ -16,7 +16,6 @@ func create_pfields(count: int):
 		randomize()
 		p.global_position.z += randf_range(-0.5, 0.5)
 		randomize()
-		print("pfields were created")
 
 func _exit_tree() -> void:
 	IRCalcGlobalScene.unregister_acoustic_emitter(self)
