@@ -9,13 +9,14 @@ func create_pfields(count: int):
 	for i in count:
 		var p = pfield.instantiate()
 		p.owner = EditorInterface.get_edited_scene_root().get_parent_node_3d()
+		
 		add_child(p)
-		p.global_position.x += randf_range(-0.5, 0.5)
+		p.global_position.x += randf_range(-0.1, 0.1)
 		randomize()
-		p.global_position.y += randf_range(-0.5, 0.5)
+		p.global_position.y += randf_range(-0.1, 0.1)
 		randomize()
-		p.global_position.z += randf_range(-0.5, 0.5)
+		p.global_position.z += randf_range(-0.1, 0.1)
 		randomize()
-
+		#p.global_position = Vector3(cos(i), sin(i), cos(i)*PI)
 func _exit_tree() -> void:
 	IRCalcGlobalScene.unregister_acoustic_emitter(self)

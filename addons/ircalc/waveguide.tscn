@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://doldw1id745e4"]
+
+[ext_resource type="Script" uid="uid://bchg8yhufmw6c" path="res://addons/ircalc/waveguide_mesh.gd" id="1_1y5dx"]
+[ext_resource type="Shader" uid="uid://k867t2k1ddfa" path="res://addons/ircalc/3rdparty/shaders/matcap_basic_add.gdshader" id="1_sfcdg"]
+[ext_resource type="Texture2D" uid="uid://c1y1lodquf338" path="res://addons/ircalc/3rdparty/shaders/chris_rollins_explo3.png" id="2_sfcdg"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_1wse8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bntlk"]
+render_priority = 0
+shader = ExtResource("1_sfcdg")
+shader_parameter/matcap = ExtResource("2_sfcdg")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+
+[node name="Waveguide" type="MeshInstance3D"]
+mesh = SubResource("ImmediateMesh_1wse8")
+surface_material_override/0 = SubResource("ShaderMaterial_bntlk")
+script = ExtResource("1_1y5dx")
+reduce_update_rate = null

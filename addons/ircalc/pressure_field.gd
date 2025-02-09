@@ -29,6 +29,7 @@ var soften_diffuse: float
 func set_simulating(value: bool):
 	simu = value
 	soften_diffuse = IRCalcGlobalScene.soften_diffuse
+	soundspeed = IRCalcGlobalScene.soundspeed
 
 func _enter_tree() -> void:
 	IRCalcGlobalScene.register_pressure_field(self)

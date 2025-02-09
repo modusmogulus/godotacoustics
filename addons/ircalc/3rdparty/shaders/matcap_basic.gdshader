@@ -3,7 +3,7 @@
 // Thanks to FireRabbit for the base which I pulled apart!
 
 shader_type spatial;
-render_mode unshaded, cull_disabled, depth_draw_never; // remove this if you wish to make it shaded
+render_mode unshaded; // remove this if you wish to make it shaded
 
 uniform sampler2D matcap : source_color, hint_default_black; // Sampler 2d of the matcap
 

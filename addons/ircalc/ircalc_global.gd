@@ -5,8 +5,9 @@ var sim_timer
 var pressurefields = []
 var emitters = []
 var ac_listeners = []
+var waveguides = []
 var soften_diffuse: float = 10.0
-var soundspeed: float = 1/343 #m/s
+var soundspeed: float = 343.0 #m/s
 var emitter_count = 16
 
 func user_req_prepare():
@@ -24,6 +25,17 @@ func set_emitter_count(count: int):
 	
 func get_emitter_count() -> int:
 	return emitter_count
+	
+func set_soundspeed(val: int):
+	soundspeed = val
+
+func update_waveguides():
+	for wvg in waveguides:
+		if pressurefields.size() > 0:
+			wvg.begin()
+			for pf in pressurefields:
+				wvg.add_vert(pf.global_position, pf.velocity)
+			wvg.shut()
 
 func start_simulation():
 	for lis in ac_listeners:
@@ -32,7 +44,8 @@ func start_simulation():
 	#	ac_em.create_pfields(emitter_count)
 	for pf in pressurefields:
 		pf.set_simulating(true)
-		
+	
+	
 	PhysicsServer3D.set_active(true)
 	sim_timer.start()
 	
@@ -42,7 +55,6 @@ func stop_simulation():
 	for pf in pressurefields:
 		pf.set_simulating(false)
 		pf.queue_free()
-
 func set_sim_duration(duration: float):
 	sim_timer.wait_time = duration
 	
@@ -59,7 +71,13 @@ func register_pressure_field(field_instance):
 func unregister_pressure_field(field_instance):
 	pressurefields.erase(field_instance)
 	#print(str(pressurefields))
-	
+
+func register_waveguide(wvg):
+	waveguides.append(wvg)
+
+func unregister_waveguide(wvg):
+	waveguides.erase(wvg)
+
 func register_acoustic_emitter(ac_em):
 	emitters.append(ac_em)
 	#print(str(ac_em))
@@ -75,4 +93,3 @@ func unregister_listener(lis):
 func unregister_acoustic_emitter(ac_em):
 	emitters.erase(ac_em)
 	#print(str(emitters))
-	
