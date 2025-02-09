@@ -3,6 +3,7 @@ extends Node
 
 var sim_timer
 var pressurefields = []
+var emitters = []
 var soundspeed: float = 1/343 #m/s
 
 func set_sim_timer(timer: Timer):
@@ -36,3 +37,12 @@ func register_pressure_field(field_instance):
 func unregister_pressure_field(field_instance):
 	pressurefields.erase(field_instance)
 	print(str(pressurefields))
+	
+func register_acoustic_emitter(ac_em):
+	emitters.append(ac_em)
+	print(str(ac_em))
+	
+func unregister_acoustic_emitter(ac_em):
+	emitters.append(ac_em)
+	print(str(ac_em))
+	
