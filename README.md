@@ -11,7 +11,7 @@ This allows for simulation of both open spaces and indoor scenes while (finally)
 
 <h3> Wouldn't this be just inefficient ray casting with lazy physics engine code? </h3>
 
-No. This differs from typical ray based methods by really simulating wave diffusion. The fields have 3 simple laws:
+No. This differs from typical ray based methods by really simulating wave diffusion. The fields have 3 simple laws: <p>
 =================== The laws =======================
 
 1. All pressure fields have fixed magnitude of velocity, which should never change (speed of sound in air)
