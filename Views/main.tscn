@@ -5,14 +5,16 @@
 [node name="Node3D" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.6188, -2.96903, -3.96333)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50.468, 0)
 use_collision = true
-size = Vector3(130.874, 33.17, 64.26)
+collision_mask = 2049
+size = Vector3(800, 20.3, 800)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.0394, 84.3536, -3.37859)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 157.031, 0)
 use_collision = true
-size = Vector3(130.874, 33.17, 64.26)
+collision_mask = 2049
+size = Vector3(800, 20.3, 800)
 
 [node name="AcousticEmitter" parent="." instance=ExtResource("1_8r4uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7406, 13.616, -5.4712)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.6474, 32.0987, 23.3759)

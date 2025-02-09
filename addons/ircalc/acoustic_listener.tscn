@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dghemc2qe87ed"]
+
+[ext_resource type="Script" uid="uid://dswjlkvgh34yv" path="res://addons/ircalc/acoustic_listener.gd" id="1_inabo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gcwmk"]
+radius = 0.03
+
+[node name="acoustic_listener" type="Node3D"]
+script = ExtResource("1_inabo")
+
+[node name="ear" type="Area3D" parent="."]
+collision_mask = 2048
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ear"]
+shape = SubResource("SphereShape3D_gcwmk")
+
+[connection signal="area_entered" from="ear" to="." method="_on_ear_area_entered"]

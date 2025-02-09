@@ -2,7 +2,9 @@
 extends CharacterBody3D
 var vel_fixed: Vector3
 var simu: bool = false
-var soundspeed: float = 34.30
+var soundspeed: float = 343
+var pressure = 1.0
+
 # =================== The laws for this scene ========
 #    
 #    (1)
@@ -25,6 +27,8 @@ var soundspeed: float = 34.30
 
 func set_simulating(value: bool):
 	simu = value
+	if simu == true:
+		$wavetable.play()
 
 func _enter_tree() -> void:
 	IRCalcGlobalScene.register_pressure_field(self)
@@ -35,6 +39,8 @@ func _physics_process(delta: float) -> void:
 	for area in $Forcefield.get_overlapping_areas():
 		if area != $Forcefield:
 			velocity += (global_position - area.global_position)
+	if get_last_slide_collision():
+		velocity = -velocity.reflect(get_last_slide_collision().get_normal())
 	#velocity = clamp(velocity, Vector3(-1.0, -1.0, -1.0), Vector3(1.0, 1.0, 1.0))
 	velocity = velocity * 4096
 	velocity = velocity.normalized() * soundspeed
