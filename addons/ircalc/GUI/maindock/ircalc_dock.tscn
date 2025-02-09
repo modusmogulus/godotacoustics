@@ -1,8 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://6cg2bv5relm0"]
 
-[ext_resource type="Script" uid="uid://mvytbo3tgq5c" path="res://addons/ircalc/GUI/maindock/ircalc_dock_node.gd" id="1_3fgy7"]
-[ext_resource type="Script" uid="uid://cfmahj01jbros" path="res://addons/ircalc/ircalc_butt.gd" id="1_j11ek"]
+[ext_resource type="Script" uid="uid://cyarnuhb5fapj" path="res://addons/ircalc/GUI/maindock/dock_node.gd" id="1_cw0en"]
 [ext_resource type="Theme" uid="uid://6tfn478a17a7" path="res://addons/ircalc/GUI/ircalc_theme.tres" id="2_x7ui4"]
+
+[sub_resource type="SystemFont" id="SystemFont_x7ui4"]
+font_names = PackedStringArray("Tahoma")
+hinting = 0
+subpixel_positioning = 0
+keep_rounding_remainders = false
 
 [node name="ircalc_dock" type="Control"]
 layout_mode = 3
@@ -11,40 +16,74 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3fgy7")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="dock_node" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_cw0en")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="dock_node"]
+layout_mode = 1
+offset_right = 266.0
+offset_bottom = 219.0
+
+[node name="Labels" type="VBoxContainer" parent="dock_node/HBoxContainer"]
 layout_mode = 2
-offset_top = 88.0
-offset_right = 99.0
-offset_bottom = 88.0
 
-[node name="Handles" type="VBoxContainer" parent="HBoxContainer"]
+[node name="DurationSpinLabel" type="Label" parent="dock_node/HBoxContainer/Labels"]
+layout_mode = 2
+text = "Duration    "
+
+[node name="Handles" type="VBoxContainer" parent="dock_node/HBoxContainer"]
 layout_mode = 2
 
-[node name="IRCalcButton" type="Button" parent="HBoxContainer/Handles"]
-layout_mode = 2
-text = "Calculate IR
-samples"
-script = ExtResource("1_j11ek")
-metadata/_custom_type_script = ExtResource("1_j11ek")
-
-[node name="DurationSpinBox" type="SpinBox" parent="HBoxContainer/Handles"]
+[node name="DurationSpin" type="SpinBox" parent="dock_node/HBoxContainer/Handles"]
+modulate = Color(0, 0.686275, 0, 1)
 layout_mode = 2
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"LCD"
 step = 0.5
+value = 3.0
+update_on_text_changed = true
 
-[node name="Labels" type="VBoxContainer" parent="HBoxContainer"]
+[node name="ButtonStartSim" type="Button" parent="dock_node"]
+layout_mode = 0
+offset_top = 374.0
+offset_right = 208.0
+offset_bottom = 416.0
+theme = ExtResource("2_x7ui4")
+theme_type_variation = &"Regular"
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_x7ui4")
+text = "Start auralization"
+
+[node name="ButtonStopSim" type="Button" parent="dock_node"]
+layout_mode = 0
+offset_top = 423.0
+offset_right = 208.0
+offset_bottom = 465.0
+theme = ExtResource("2_x7ui4")
+theme_type_variation = &"Regular"
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_x7ui4")
+text = "Stop auralization"
+
+[node name="StateLabel" type="Label" parent="dock_node"]
 layout_mode = 2
+offset_left = 4.0
+offset_top = 473.0
+offset_right = 232.0
+offset_bottom = 534.0
+theme = ExtResource("2_x7ui4")
+text = "0.0"
+uppercase = true
 
-[node name="EmptyLabel" type="Label" parent="HBoxContainer/Labels"]
-layout_mode = 2
-text = "
-"
+[node name="Timer" type="Timer" parent="dock_node"]
+process_mode = 3
+process_callback = 0
+one_shot = true
+ignore_time_scale = true
 
-[node name="DurationSpinLabel" type="Label" parent="HBoxContainer/Labels"]
-layout_mode = 2
-text = "Duration"
-
-[connection signal="value_changed" from="HBoxContainer/Handles/DurationSpinBox" to="." method="_on_duration_spin_box_value_changed"]
+[connection signal="pressed" from="dock_node/ButtonStartSim" to="dock_node" method="_on_button_start_sim_pressed"]
+[connection signal="pressed" from="dock_node/ButtonStopSim" to="dock_node" method="_on_button_stop_sim_pressed"]

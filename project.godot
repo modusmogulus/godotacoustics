@@ -27,6 +27,10 @@ project/assembly_name="GodotAcoustics"
 
 enabled=PackedStringArray("res://addons/ircalc/plugin.cfg")
 
+[global_group]
+
+Acoustics="Group for all acoustics related stuff"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

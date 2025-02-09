@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://duu4kij01s5vk"]
+
+[ext_resource type="Script" uid="uid://u5itcuk0qaoj" path="res://addons/ircalc/pressure_field.gd" id="1_c2dkg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ccqrm"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c2dkg"]
+radius = 1.0
+
+[node name="PressureField" type="CharacterBody3D" groups=["Acoustics"]]
+script = ExtResource("1_c2dkg")
+
+[node name="Collider" type="CollisionShape3D" parent="." groups=["Acoustics"]]
+shape = SubResource("SphereShape3D_ccqrm")
+disabled = true
+debug_color = Color(0.698039, 1, 0, 1)
+
+[node name="Forcefield" type="Area3D" parent="." groups=["Acoustics"]]
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="Bounds" type="CollisionShape3D" parent="Forcefield"]
+shape = SubResource("SphereShape3D_c2dkg")
+debug_color = Color(0.709804, 0.486275, 0.0509804, 1)
