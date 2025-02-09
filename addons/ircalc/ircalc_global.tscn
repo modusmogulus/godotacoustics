@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3cwuy4jlbni1"]
+
+[ext_resource type="Script" uid="uid://cm6rc7jsafrav" path="res://addons/ircalc/ircalc_global.gd" id="1_7fosb"]
+
+[node name="IrcalcGlobal" type="Node3D"]
+script = ExtResource("1_7fosb")
+
+[node name="SimulationTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[connection signal="timeout" from="SimulationTimer" to="." method="_on_simulation_timer_timeout"]

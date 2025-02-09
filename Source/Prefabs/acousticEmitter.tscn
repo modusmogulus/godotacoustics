@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1u8bt02eoa1a"]
+
+[ext_resource type="Script" uid="uid://bnhqy7kak38d5" path="res://Source/Prefabs/acoustic_emitter.gd" id="1_qpuwb"]
+
+[node name="AcousticEmitter" type="Node3D"]
+script = ExtResource("1_qpuwb")

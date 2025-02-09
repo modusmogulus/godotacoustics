@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://diaytu1jd0yib"]
+
+[ext_resource type="Script" uid="uid://bc2jisccfuadb" path="res://addons/ircalc/acoustic_ray.gd" id="1_utrpp"]
+
+[node name="acoustic_ray" type="RayCast3D"]
+target_position = Vector3(0, 1, 0)
+collision_mask = 4294967295
+debug_shape_custom_color = Color(0.705882, 0.905882, 0, 1)
+script = ExtResource("1_utrpp")
