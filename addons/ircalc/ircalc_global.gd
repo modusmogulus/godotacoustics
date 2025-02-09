@@ -6,6 +6,11 @@ var pressurefields = []
 var emitters = []
 var soundspeed: float = 1/343 #m/s
 
+
+func user_req_prepare():
+	for ac_em in emitters:
+		ac_em.create_pfields(8)
+
 func set_sim_timer(timer: Timer):
 	sim_timer = timer
 	
@@ -43,6 +48,6 @@ func register_acoustic_emitter(ac_em):
 	print(str(ac_em))
 	
 func unregister_acoustic_emitter(ac_em):
-	emitters.append(ac_em)
-	print(str(ac_em))
+	emitters.erase(ac_em)
+	print(str(emitters))
 	

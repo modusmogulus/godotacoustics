@@ -13,3 +13,7 @@ func _process(delta: float) -> void:
 
 func _on_button_stop_sim_pressed() -> void:
 	IRCalcGlobalScene.stop_simulation()
+
+
+func _on_button_spawn_pressed() -> void:
+	IRCalcGlobalScene.user_req_prepare()

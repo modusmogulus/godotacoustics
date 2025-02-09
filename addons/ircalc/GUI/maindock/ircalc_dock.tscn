@@ -47,7 +47,18 @@ step = 0.5
 value = 3.0
 update_on_text_changed = true
 
-[node name="ButtonStartSim" type="Button" parent="dock_node" groups=["Acoustics"]]
+[node name="ButtonSpawn" type="Button" parent="dock_node" groups=["Acoustics"]]
+layout_mode = 0
+offset_top = 324.0
+offset_right = 208.0
+offset_bottom = 366.0
+theme = ExtResource("2_x7ui4")
+theme_type_variation = &"Regular"
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_x7ui4")
+text = "Spawn pressurefields"
+
+[node name="ButtonStartSim2" type="Button" parent="dock_node" groups=["Acoustics"]]
 layout_mode = 0
 offset_top = 374.0
 offset_right = 208.0
@@ -85,5 +96,7 @@ process_callback = 0
 one_shot = true
 ignore_time_scale = true
 
-[connection signal="pressed" from="dock_node/ButtonStartSim" to="dock_node" method="_on_button_start_sim_pressed"]
+[connection signal="pressed" from="dock_node/ButtonSpawn" to="dock_node" method="_on_button_start_sim_pressed"]
+[connection signal="pressed" from="dock_node/ButtonSpawn" to="dock_node" method="_on_button_spawn_pressed"]
+[connection signal="pressed" from="dock_node/ButtonStartSim2" to="dock_node" method="_on_button_start_sim_pressed"]
 [connection signal="pressed" from="dock_node/ButtonStopSim" to="dock_node" method="_on_button_stop_sim_pressed"]

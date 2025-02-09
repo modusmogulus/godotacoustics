@@ -1,10 +1,15 @@
 @tool
 extends Node3D
-var pfield = preload("res://addons/ircalc/acoustic_emitter.tscn").instantiate()
+var pfield = preload("res://addons/ircalc/pressure_field.tscn")
 
 func _enter_tree() -> void:
-	pass
+	IRCalcGlobalScene.register_acoustic_emitter(self)
 
 func create_pfields(count: int):
-	pfield.owner = EditorInterface.get_edited_scene_root().get_parent_node_3d()
-	get_tree().get_edited_scene_root().add_child(pfield)
+	var p = pfield.instantiate()
+	p.owner = self
+	add_child(p)
+	print("pfields were created")
+
+func _exit_tree() -> void:
+	IRCalcGlobalScene.unregister_acoustic_emitter(self)
