@@ -38,12 +38,17 @@ func _exit_tree() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if simu == false: return
+	pressure = 0.98
+	#print(pressure)
+	$wavetable.volume_db *= pressure
 	if $wavetable && $wavetable.playing == false: $wavetable.play()
 	$Soundfield.scale += Vector3(soften_diffuse*delta, soften_diffuse*delta, soften_diffuse*delta)
 	for area in $Forcefield.get_overlapping_areas():
 		if area != $Forcefield:
-			#if velocity.dot(area.get_parent().velocity.abs()) < 0.9:
-			velocity += (global_position - area.global_position)*0.1
+			if absf(velocity.dot(area.get_parent().velocity)) < 0.1 or velocity.length() < 1.0:
+				velocity += (global_position - area.global_position) * 1.55
+			#velocity += velocity.reflect((velocity - area.get_parent().velocity).normalized())*0.1
+			
 			#area.get_parent().velocity -= velocity
 	
 	
@@ -54,4 +59,6 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.normalized() * soundspeed
 	
 	var bodies = move_and_collide(velocity*delta)
-	if bodies: velocity = 0.8*velocity + bodies.get_normal()*soundspeed
+	if bodies: 
+		velocity = 0.8*velocity + bodies.get_normal()*soundspeed
+		pressure *= 0.5

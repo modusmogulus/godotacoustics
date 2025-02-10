@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://duu4kij01s5vk"]
+[gd_scene load_steps=12 format=3 uid="uid://duu4kij01s5vk"]
 
 [ext_resource type="Script" uid="uid://u5itcuk0qaoj" path="res://addons/ircalc/pressure_field.gd" id="1_c2dkg"]
 [ext_resource type="Shader" uid="uid://bbftqrmedpfqh" path="res://addons/ircalc/3rdparty/shaders/matcap.gdshader" id="2_x88p7"]
 [ext_resource type="Texture2D" uid="uid://n4tl6o4uxne6" path="res://addons/ircalc/3rdparty/shaders/416BA7_A5B8D0_0D2549_65ABEB-64px.png" id="3_pw704"]
-[ext_resource type="AudioStream" uid="uid://bxttln8a08ehf" path="res://addons/ircalc/wavetables/1hz-sine.mp3" id="4_pw704"]
+[ext_resource type="AudioStream" uid="uid://dvgk6m08veh7p" path="res://addons/ircalc/wavetables/SAMPLES_UP.wav" id="4_ioc0h"]
+[ext_resource type="AudioStream" uid="uid://buqec72j3kq1a" path="res://addons/ircalc/wavetables/SAMPLES_DOWN.wav" id="5_qysnn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ccqrm"]
 radius = 0.897
@@ -24,6 +25,11 @@ rings = 1
 render_priority = 0
 shader = ExtResource("2_x88p7")
 shader_parameter/matcap = ExtResource("3_pw704")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2j0su"]
+streams_count = 2
+stream_0/stream = ExtResource("4_ioc0h")
+stream_1/stream = ExtResource("5_qysnn")
 
 [node name="PressureField" type="CharacterBody3D"]
 process_mode = 3
@@ -61,6 +67,7 @@ mesh = SubResource("SphereMesh_ioc0h")
 surface_material_override/0 = SubResource("ShaderMaterial_qysnn")
 
 [node name="wavetable" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_pw704")
+stream = SubResource("AudioStreamRandomizer_2j0su")
+volume_db = -62.785
 autoplay = true
-max_distance = 2.0
+max_distance = 20.0
