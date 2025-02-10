@@ -38,15 +38,20 @@ func _exit_tree() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if simu == false: return
-	
+	if $wavetable && $wavetable.playing == false: $wavetable.play()
 	$Soundfield.scale += Vector3(soften_diffuse*delta, soften_diffuse*delta, soften_diffuse*delta)
 	for area in $Forcefield.get_overlapping_areas():
 		if area != $Forcefield:
-			velocity += (global_position - area.global_position)
-	if get_last_slide_collision():
-		velocity = -velocity.reflect(get_last_slide_collision().get_normal())
+			#if velocity.dot(area.get_parent().velocity.abs()) < 0.9:
+			velocity += (global_position - area.global_position)*0.1
+			#area.get_parent().velocity -= velocity
+	
+	
+	
+		#velocity = -velocity
 	#velocity = clamp(velocity, Vector3(-1.0, -1.0, -1.0), Vector3(1.0, 1.0, 1.0))
 	velocity = velocity * 4096
 	velocity = velocity.normalized() * soundspeed
 	
-	move_and_slide()
+	var bodies = move_and_collide(velocity*delta)
+	if bodies: velocity = velocity + bodies.get_normal()*soundspeed

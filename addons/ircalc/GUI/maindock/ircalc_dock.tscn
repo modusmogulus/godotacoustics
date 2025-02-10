@@ -81,7 +81,6 @@ theme = ExtResource("2_x7ui4")
 theme_type_variation = &"LCD"
 max_value = 512.0
 step = 0.1
-value = 0.5
 update_on_text_changed = true
 
 [node name="CountLabel3" type="Label" parent="dock_node"]

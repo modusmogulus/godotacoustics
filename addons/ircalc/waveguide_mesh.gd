@@ -10,17 +10,20 @@ func _exit_tree() -> void:
 
 func begin():
 	mesh.clear_surfaces()
-	mesh.surface_begin(Mesh.PrimitiveType.PRIMITIVE_TRIANGLE_STRIP)
+	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
 
 func shut():
 	mesh.surface_end()
-
+	
 func add_verts(pos: PackedVector3Array, normal: PackedVector3Array):
 	global_position = Vector3.ZERO
 	begin()
+	#pos.sort()
+	#normal.sort()
 	for i in pos.size():
+		#if i > 1: mesh.surface_set_normal(pos[i].normalized().cross((pos[i-1]).normalized()))
 		mesh.surface_set_normal(normal[i].normalized())
-		#mesh.surface_set_uv(Vector2(pos[i].x, pos[i].y))
+		mesh.surface_set_uv(Vector2(pos[i-1].x, pos[i].y))
 		mesh.surface_add_vertex(pos[i])
 	shut()
 

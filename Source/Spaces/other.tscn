@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq5w646ihx40u"]
+[gd_scene load_steps=4 format=3 uid="uid://dxt6mwqej3cs"]
 
-[ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="1_8r4uk"]
-[ext_resource type="PackedScene" uid="uid://doldw1id745e4" path="res://addons/ircalc/waveguide.tscn" id="2_y1b1f"]
+[ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="1_cdsg3"]
+[ext_resource type="PackedScene" uid="uid://doldw1id745e4" path="res://addons/ircalc/waveguide.tscn" id="2_dihug"]
 
 [sub_resource type="Environment" id="Environment_y1b1f"]
 background_mode = 1
@@ -52,8 +52,7 @@ size = Vector3(17.6812, 5, 36.653)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y1b1f")
 
-[node name="AcousticEmitter" parent="." instance=ExtResource("1_8r4uk")]
-transform = Transform3D(0.267083, -0.963576, 8.27331e-08, 0.528007, 0.146352, 0.836427, -0.806034, -0.223415, 0.547917, -65.4022, 87.1237, 12.7808)
+[node name="AcousticEmitter" parent="." instance=ExtResource("1_cdsg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.3513, 87.4855, 13.3908)
 
-[node name="Waveguide" parent="." instance=ExtResource("2_y1b1f")]
-reduce_update_rate = 0
+[node name="Waveguide" parent="." instance=ExtResource("2_dihug")]
