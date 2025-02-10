@@ -3,13 +3,12 @@
 [ext_resource type="Script" uid="uid://u5itcuk0qaoj" path="res://addons/ircalc/pressure_field.gd" id="1_c2dkg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ccqrm"]
-radius = 0.1
+radius = 0.02
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c2dkg"]
-radius = 17.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6evb8"]
-radius = 1.0
+radius = 2.0
 
 [node name="PressureField" type="CharacterBody3D"]
 process_mode = 3
@@ -33,6 +32,7 @@ debug_color = Color(0.222327, 0.510533, 1, 1)
 debug_fill = false
 
 [node name="Soundfield" type="Area3D" parent="."]
+collision_layer = 0
 
 [node name="SoundBounds" type="CollisionShape3D" parent="Soundfield"]
 transform = Transform3D(170.82, 0, 0, 0, 170.82, 0, 0, 0, 170.82, 0, 0, 0)

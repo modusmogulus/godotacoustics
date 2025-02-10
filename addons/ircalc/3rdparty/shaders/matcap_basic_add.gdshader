@@ -3,7 +3,7 @@
 // Thanks to FireRabbit for the base which I pulled apart!
 
 shader_type spatial;
-render_mode blend_mix, unshaded;
+render_mode blend_mix, unshaded, cull_disabled, fog_disabled;
 
 uniform sampler2D matcap : source_color, hint_default_black; // Sampler 2d of the matcap
 uniform vec4 albedo : source_color;
@@ -19,7 +19,7 @@ vec2 generate_matcap_uv(vec3 _normal, vec3 _node_position_view) {
 void fragment(){
 	vec2 matcap_uv = (generate_matcap_uv(NORMAL, NODE_POSITION_VIEW)); // Matcap UV's
 	vec4 _matcap = vec4(texture(matcap, matcap_uv).rgb * albedo.rgb * albedo.rgb,texture(matcap, matcap_uv).a); // Matcap Texture
-	ALBEDO = _matcap.rgb; // Sets the albedo to the matcap texture. 
+	ALBEDO = _matcap.rgb; // Sets the albedo to the matcap texture.
 	ALPHA = _matcap.a;
 }
 
@@ -32,11 +32,11 @@ void fragment(){
 // If you want to make it make it take your normalmap into account, replace the [vec3 _matcap = ...] with:
 //
 // vec3 _matcap = texture(matcap, matcap_uv + ((texture([INSERT NORMALMAP], UV).xy - 0.5) * [INFLUENCE])).rgb;
-// 
-// Replacing the [INSERT NORMALMAP] with your sampler2D normalmap 
-// and [INFLUENCE] with a float. 
-// 
-// The [.xy - 0.5] part maps the normal from vec3 [0 : 1] range into a vec2 [-0.5 : 0.5] range. 
+//
+// Replacing the [INSERT NORMALMAP] with your sampler2D normalmap
+// and [INFLUENCE] with a float.
+//
+// The [.xy - 0.5] part maps the normal from vec3 [0 : 1] range into a vec2 [-0.5 : 0.5] range.
 // You can correct it into a [-1 : 1] range by multiplying it by 2, but I found it's not really nessessary here.
 
 // If you want to use a Metalness map or a Roughness map, or both, to influence the matcap:
@@ -44,18 +44,18 @@ void fragment(){
 //
 // _matcap = mix(vec3(0.0), _matcap, clamp([metalness] + (1 - [roughness]), 0, 1);
 //
-// The example above is a super simple blend between the metal value, and the inverse rough value. 
+// The example above is a super simple blend between the metal value, and the inverse rough value.
 // Effectively meaning that the more metallic and more shiny the object, the more matcap it'll have
 // You'll want to augment it and make it more complex than that though. It's just a quick example.
 
-// If you want to add onto the default shading, you'll want to add the _matcap 
-// to your albedo or emissive layer instead of setting it like it is in this file. IE: 
+// If you want to add onto the default shading, you'll want to add the _matcap
+// to your albedo or emissive layer instead of setting it like it is in this file. IE:
 //
 // ALBEDO = texture(albedo, UV)
 // ALBEDO += _matcap
 // EMISSION += _matcap
 
-// Or multiply it if you want it to be more of a 'flashlight'/'shadow' kind of effect instead of a 
+// Or multiply it if you want it to be more of a 'flashlight'/'shadow' kind of effect instead of a
 // light.
 // ALBEDO = texture(albedo, UV)
 // ALBEDO *= _matcap

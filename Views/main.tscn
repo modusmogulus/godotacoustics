@@ -1,36 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq5w646ihx40u"]
+[gd_scene load_steps=4 format=3 uid="uid://dq5w646ihx40u"]
 
 [ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="1_8r4uk"]
 [ext_resource type="PackedScene" uid="uid://doldw1id745e4" path="res://addons/ircalc/waveguide.tscn" id="2_y1b1f"]
 
+[sub_resource type="Environment" id="Environment_y1b1f"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.439049, 0.439049, 0.439049, 1)
+ambient_light_energy = 2.83
+fog_enabled = true
+fog_light_color = Color(0.140262, 0.156196, 0.181246, 1)
+fog_light_energy = 0.0
+
 [node name="Node3D" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50.468, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.9539, 93.3126, -6.48321)
 use_collision = true
-collision_mask = 2049
-size = Vector3(8070.98, 20.3, 8000)
+size = Vector3(441.119, 233.79, 257.939)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.0463917, 0.998923, 0, -0.998923, -0.0463917, 0, 0, 0, 1, 273.142, 157.031, 0)
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1931, -6.50622, -1.14844)
+operation = 2
 use_collision = true
-collision_mask = 2049
-size = Vector3(800, 20.3, 800)
+size = Vector3(17.6812, 5, 15.0801)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(2.02784e-09, -4.36643e-08, -1, -0.998923, -0.0463917, 0, -0.0463917, 0.998923, -4.37114e-08, 12.4909, 157.031, 182.463)
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.86582, -6.50622, 21.3517)
+operation = 2
 use_collision = true
-collision_mask = 2049
-size = Vector3(800, 20.3, 800)
+size = Vector3(31.0266, 5, 15.0801)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(2.02784e-09, -4.36643e-08, -1, -0.998923, -0.0463917, 0, -0.0463917, 0.998923, -4.37114e-08, 12.4909, 157.031, -1115.1)
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8339, -6.50622, 21.3517)
+operation = 2
 use_collision = true
-collision_mask = 2049
-size = Vector3(801.12, 134.185, 800)
+size = Vector3(31.0266, 5, 15.0801)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2312, -6.50622, 9.13692)
+operation = 2
+use_collision = true
+size = Vector3(17.6812, 5, 36.653)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_y1b1f")
 
 [node name="AcousticEmitter" parent="." instance=ExtResource("1_8r4uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9505, 404.965, -171.144)
+transform = Transform3D(-0.568416, 0.822738, 4.78056e-09, -0.0260481, -0.0179962, 0.999495, 0.822325, 0.568131, 0.0316602, -65.4022, 87.1237, -9.0782)
 
 [node name="Waveguide" parent="." instance=ExtResource("2_y1b1f")]
-reduce_update_rate = 10
+reduce_update_rate = 0

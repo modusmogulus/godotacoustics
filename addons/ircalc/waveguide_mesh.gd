@@ -15,11 +15,14 @@ func begin():
 func shut():
 	mesh.surface_end()
 
-func add_vert(pos, normal):
+func add_verts(pos: PackedVector3Array, normal: PackedVector3Array):
 	global_position = Vector3.ZERO
-	mesh.surface_set_normal(normal.normalized())
-	mesh.surface_set_uv(Vector2(pos.x, pos.y))
-	mesh.surface_add_vertex(pos)
+	begin()
+	for i in pos.size():
+		mesh.surface_set_normal(normal[i].normalized())
+		#mesh.surface_set_uv(Vector2(pos[i].x, pos[i].y))
+		mesh.surface_add_vertex(pos[i])
+	shut()
 
 func _process(delta: float) -> void:
 	time += 1

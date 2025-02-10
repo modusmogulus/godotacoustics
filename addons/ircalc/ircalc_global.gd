@@ -30,12 +30,17 @@ func set_soundspeed(val: int):
 	soundspeed = val
 
 func update_waveguides():
+	var ar_pfpos: PackedVector3Array
+	var ar_pfnm: PackedVector3Array
+	ar_pfpos.clear()
+	ar_pfnm.clear()
+	
+	for pf in pressurefields:
+		ar_pfpos.append(pf.global_position)
+		ar_pfnm.append(pf.velocity)
 	for wvg in waveguides:
-		if pressurefields.size() > 0:
-			wvg.begin()
-			for pf in pressurefields:
-				wvg.add_vert(pf.global_position, pf.velocity)
-			wvg.shut()
+		if ar_pfpos.size() > 0:
+			wvg.add_verts(ar_pfpos, ar_pfnm)
 
 func start_simulation():
 	for lis in ac_listeners:
@@ -93,3 +98,6 @@ func unregister_listener(lis):
 func unregister_acoustic_emitter(ac_em):
 	emitters.erase(ac_em)
 	#print(str(emitters))
+
+func _ready() -> void:
+	start_simulation()
