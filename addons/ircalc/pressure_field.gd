@@ -3,6 +3,9 @@ extends CharacterBody3D
 var vel_fixed: Vector3
 var simu: bool = false
 var soundspeed: float = 343
+var timescale: float = 1.0
+var final_sndspd: float
+
 var pressure = 1.0
 var soften_diffuse: float
 
@@ -38,11 +41,10 @@ func _exit_tree() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if simu == false: return
-	pressure = 0.98
 	#print(pressure)
-	$wavetable.volume_db *= pressure
+	$wavetable.volume_db -= 0.005
 	if $wavetable && $wavetable.playing == false: $wavetable.play()
-	$Soundfield.scale += Vector3(soften_diffuse*delta, soften_diffuse*delta, soften_diffuse*delta)
+	#$Soundfield.scale += Vector3(soften_diffuse*delta, soften_diffuse*delta, soften_diffuse*delta)
 	for area in $Forcefield.get_overlapping_areas():
 		if area != $Forcefield:
 			if absf(velocity.dot(area.get_parent().velocity)) < 0.1 or velocity.length() < 1.0:
@@ -61,4 +63,4 @@ func _physics_process(delta: float) -> void:
 	var bodies = move_and_collide(velocity*delta)
 	if bodies: 
 		velocity = 0.8*velocity + bodies.get_normal()*soundspeed
-		pressure *= 0.5
+		$wavetable.volume_db -= 0.015

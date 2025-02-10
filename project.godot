@@ -23,6 +23,11 @@ IRCalcGlobalScene="*res://addons/ircalc/ircalc_global.tscn"
 
 project/assembly_name="GodotAcoustics"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/Miranda/Desktop/Ohjelmointi/godotacoustics/ExportedVideos/movie.avi"
+movie_writer/fps=24
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ircalc/plugin.cfg")

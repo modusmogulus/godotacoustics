@@ -83,21 +83,24 @@ max_value = 512.0
 step = 0.1
 update_on_text_changed = true
 
+[node name="HSlider" type="HSlider" parent="dock_node/HBoxContainer/Handles"]
+layout_mode = 2
+
 [node name="CountLabel3" type="Label" parent="dock_node"]
 layout_mode = 2
-offset_left = 9.0
-offset_top = 250.0
-offset_right = 95.0
-offset_bottom = 273.0
+offset_left = 10.0
+offset_top = 223.0
+offset_right = 96.0
+offset_bottom = 246.0
 text = "Speed m/s"
 
 [node name="SpeedSpin" type="SpinBox" parent="dock_node"]
 modulate = Color(0, 0.686275, 0, 1)
 layout_mode = 2
-offset_left = 10.0
-offset_top = 281.0
-offset_right = 159.0
-offset_bottom = 306.0
+offset_left = 11.0
+offset_top = 254.0
+offset_right = 160.0
+offset_bottom = 279.0
 theme = SubResource("Theme_cw0en")
 theme_type_variation = &"LCD"
 min_value = 0.1

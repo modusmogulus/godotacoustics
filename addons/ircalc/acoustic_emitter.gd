@@ -8,8 +8,10 @@ func _enter_tree() -> void:
 func create_pfields(count: int):
 	for i in count:
 		var p = pfield.instantiate()
-		p.owner = EditorInterface.get_edited_scene_root().get_parent_node_3d()
-		
+		if Engine.is_editor_hint() == true:
+			p.owner = EditorInterface.get_edited_scene_root().get_parent_node_3d()
+		else:
+			p.owner = get_tree().get_root()
 		add_child(p)
 		#p.position.x = 1.1
 		#if i%2 == 0: p.position.y = 1.1

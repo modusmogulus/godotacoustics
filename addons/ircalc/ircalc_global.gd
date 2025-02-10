@@ -52,7 +52,7 @@ func start_simulation():
 	
 	
 	PhysicsServer3D.set_active(true)
-	sim_timer.start()
+	#sim_timer.start()
 	
 func stop_simulation():
 	sim_timer.stop()
