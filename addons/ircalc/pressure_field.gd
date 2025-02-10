@@ -54,4 +54,4 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.normalized() * soundspeed
 	
 	var bodies = move_and_collide(velocity*delta)
-	if bodies: velocity = velocity + bodies.get_normal()*soundspeed
+	if bodies: velocity = 0.8*velocity + bodies.get_normal()*soundspeed
