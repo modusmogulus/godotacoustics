@@ -31,7 +31,7 @@ var soften_diffuse: float
 
 func set_simulating(value: bool):
 	simu = value
-	soften_diffuse = IRCalcGlobalScene.soften_diffuse
+	soften_diffuse = IRCalcGlobalScene.soften_diffuse/(343/soundspeed)
 	soundspeed = IRCalcGlobalScene.soundspeed
 
 func _enter_tree() -> void:
@@ -42,25 +42,32 @@ func _exit_tree() -> void:
 func _physics_process(delta: float) -> void:
 	if simu == false: return
 	#print(pressure)
+	look_at(velocity*1000)
 	$wavetable.volume_db -= 0.005
 	if $wavetable && $wavetable.playing == false: $wavetable.play()
-	#$Soundfield.scale += Vector3(soften_diffuse*delta, soften_diffuse*delta, soften_diffuse*delta)
+	if soften_diffuse>0.0: $Soundfield.scale += (Vector3(soften_diffuse*delta, soften_diffuse*delta, soften_diffuse*delta))
 	for area in $Forcefield.get_overlapping_areas():
-		if area != $Forcefield:
+		if area != $Forcefield && area:
 			if absf(velocity.dot(area.get_parent().velocity)) < 0.1 or velocity.length() < 1.0:
 				velocity += (global_position - area.global_position) * 1.55
 			#velocity += velocity.reflect((velocity - area.get_parent().velocity).normalized())*0.1
 			
 			#area.get_parent().velocity -= velocity
 	
-	
+	if get_parent_node_3d().scale.y < 0.5: velocity.y = 0.0
 	
 		#velocity = -velocity
 	#velocity = clamp(velocity, Vector3(-1.0, -1.0, -1.0), Vector3(1.0, 1.0, 1.0))
 	velocity = velocity * 4096
+	#velocity.y = 0
 	velocity = velocity.normalized() * soundspeed
 	
-	var bodies = move_and_collide(velocity*delta)
-	if bodies: 
+	var bodies = move_and_collide(velocity*1/60)
+	if bodies:
 		velocity = 0.8*velocity + bodies.get_normal()*soundspeed
+		
+		#dup.velocity.x += randf_range(-0.01, 0.01)
+		#dup.velocity.y += randf_range(-0.01, 0.01)
+		#dup.velocity.z += randf_range(-0.01, 0.01)
+		
 		$wavetable.volume_db -= 0.015

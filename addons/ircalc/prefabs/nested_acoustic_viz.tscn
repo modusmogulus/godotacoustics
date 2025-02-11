@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bms3lm7dqyjd3"]
+
+[ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="1_2ue0y"]
+
+[node name="NestedAcousticViz" type="Node3D"]
+
+[node name="FloorViz" parent="." instance=ExtResource("1_2ue0y")]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, -70.8371, 1.55994, -4.76229)
+
+[node name="AcousticViz" parent="." instance=ExtResource("1_2ue0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.8371, 7.5682, -4.76229)

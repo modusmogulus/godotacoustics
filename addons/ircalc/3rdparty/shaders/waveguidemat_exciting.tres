@@ -1,0 +1,44 @@
+[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://cmeftlhjjekun"]
+
+[ext_resource type="Shader" uid="uid://k867t2k1ddfa" path="res://addons/ircalc/3rdparty/shaders/matcap_basic_add.gdshader" id="1_eto8h"]
+[ext_resource type="Texture2D" uid="uid://b87w48njl4ywd" path="res://addons/ircalc/3rdparty/shaders/mtcp_firework.png" id="2_eto8h"]
+[ext_resource type="Shader" uid="uid://yc53rgld7ea" path="res://addons/ircalc/3rdparty/shaders/distort.gdshader" id="3_p2fwb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xoq2k"]
+render_priority = 127
+shader = ExtResource("1_eto8h")
+shader_parameter/matcap = ExtResource("2_eto8h")
+shader_parameter/metalness = 1.0
+shader_parameter/color = Color(0.68, 0.68, 0.68, 0.239216)
+
+[sub_resource type="Gradient" id="Gradient_vyx3n"]
+offsets = PackedFloat32Array(0, 0.698529)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xoq2k"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0s0wk"]
+width = 203
+height = 203
+color_ramp = SubResource("Gradient_vyx3n")
+noise = SubResource("FastNoiseLite_xoq2k")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_58tas"]
+noise_type = 0
+frequency = 0.025
+fractal_type = 0
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kyvgg"]
+noise = SubResource("FastNoiseLite_58tas")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_xoq2k")
+shader = ExtResource("3_p2fwb")
+shader_parameter/albedo_texture = SubResource("NoiseTexture2D_0s0wk")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_kyvgg")
+shader_parameter/speed = 0.105
+shader_parameter/distortion = 0.005
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)

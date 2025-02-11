@@ -1,23 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxt6mwqej3cs"]
+[gd_scene load_steps=12 format=3 uid="uid://dxt6mwqej3cs"]
 
-[ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="1_cdsg3"]
-[ext_resource type="PackedScene" uid="uid://doldw1id745e4" path="res://addons/ircalc/waveguide.tscn" id="2_dihug"]
+[ext_resource type="Material" uid="uid://bqa5iusf2vitp" path="res://addons/ircalc/3rdparty/shaders/MAT_def.tres" id="1_jk1uq"]
 [ext_resource type="PackedScene" uid="uid://6cg2bv5relm0" path="res://addons/ircalc/GUI/maindock/ircalc_dock.tscn" id="3_dihug"]
+[ext_resource type="Script" uid="uid://4q6ldkg1fp0f" path="res://addons/ircalc/test/debug_freecam_by_ninjat.gd" id="3_s2mmi"]
+[ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="4_s2mmi"]
+[ext_resource type="PackedScene" uid="uid://doldw1id745e4" path="res://addons/ircalc/waveguide.tscn" id="5_jk1uq"]
+[ext_resource type="Material" uid="uid://cmeftlhjjekun" path="res://addons/ircalc/3rdparty/shaders/waveguidemat_exciting.tres" id="6_i0yh6"]
+
+[sub_resource type="Gradient" id="Gradient_jk1uq"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.537879)
+colors = PackedColorArray(0, 0, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i0yh6"]
+gradient = SubResource("Gradient_jk1uq")
+width = 1
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4li3a"]
+panorama = SubResource("GradientTexture2D_i0yh6")
+
+[sub_resource type="Sky" id="Sky_jk1uq"]
+sky_material = SubResource("PanoramaSkyMaterial_4li3a")
+radiance_size = 2
 
 [sub_resource type="Environment" id="Environment_y1b1f"]
-background_mode = 1
+background_mode = 2
+background_color = Color(0.262932, 0.262932, 0.262932, 1)
+sky = SubResource("Sky_jk1uq")
 ambient_light_source = 2
-ambient_light_color = Color(0.439049, 0.439049, 0.439049, 1)
+ambient_light_color = Color(0.141469, 0.189496, 0.26288, 1)
 ambient_light_energy = 2.83
+tonemap_mode = 1
+tonemap_exposure = 1.55
+glow_intensity = 2.82
+glow_hdr_scale = 0.39
 fog_light_color = Color(0.140262, 0.156196, 0.181246, 1)
 fog_light_energy = 0.0
 
 [node name="Node3D" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.954, -116.895, -6.483)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.954, -116.895, -8.55644)
+material_override = ExtResource("1_jk1uq")
 use_collision = true
-size = Vector3(441.119, 233.79, 257.939)
+size = Vector3(441.119, 233.79, 421.748)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2484, 122.503, 0)
@@ -31,27 +59,118 @@ size = Vector3(9.785, 19.935, 26.64)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6687, 122.503, -33.8206)
 size = Vector3(9.785, 19.935, 26.64)
 
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.3086, 123.987, 44.4972)
+size = Vector3(9.785, 19.935, 56.3714)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-0.0303467, 0, -0.999539, 0, 1, 0, 0.999539, 0, -0.0303467, 8.29275, 123.987, 103.914)
+size = Vector3(9.785, 19.935, 56.3714)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.6317, 123.987, 44.4972)
+size = Vector3(9.785, 19.935, 56.3714)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.6317, 123.987, 107.559)
+size = Vector3(9.785, 19.935, 56.3714)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.8054, 123.987, 107.559)
+size = Vector3(9.785, 19.935, 56.3714)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.644, 123.987, -16.8733)
+size = Vector3(9.785, 19.935, 56.3714)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.644, 123.987, 43.8133)
+size = Vector3(9.785, 19.935, 56.3714)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.644, 123.987, 106.287)
+size = Vector3(9.785, 19.935, 56.3714)
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.48, 120.797, 0)
-size = Vector3(9.785, 19.935, 26.64)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.9583, 134.992, -21.6516)
+size = Vector3(11.3075, 48.3244, 39.1948)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, -0.995931, -0.090111, 0, 0.090111, -0.995931, 11.9484, 109.731, -75.5485)
+inner_radius = 10.228
+outer_radius = 33.642
+sides = 16
+ring_sides = 16
+
+[node name="CSGTorus3D3" type="CSGTorus3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, -0.973286, -0.112756, 0, 0.0880621, -1.24621, 39.4133, 49.6429, 12.1223)
+inner_radius = 342.937
+outer_radius = 121.956
+sides = 16
+ring_sides = 16
+
+[node name="CSGTorus3D4" type="CSGTorus3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, -0.132393, 1.23977, 0, -0.968252, -0.169518, 39.4133, 49.6429, -298.94)
+inner_radius = 487.255
+outer_radius = 47.8
+sides = 16
+ring_sides = 16
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 0.54784, 0.836582, 0, -0.836582, 0.54784, 9.26715, 128.235, -61.4618)
+inner_radius = 10.228
+outer_radius = 33.642
+sides = 16
+ring_sides = 16
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D"]
-transform = Transform3D(0.0871558, 0, -0.996195, 0, 1, 0, 0.996195, 0, 0.0871558, 5.48977, 122.713, 22.4977)
-size = Vector3(9.785, 19.935, 26.64)
+transform = Transform3D(0.0871558, 0, -0.996195, 0, 1, 0, 0.996195, 0, 0.0871558, 7.117, 126.616, 41.097)
+size = Vector3(47.1258, 27.7409, 26.64)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGBox3D"]
+transform = Transform3D(0.0871558, 0, -0.996195, 0, 1, 0, 0.996195, 0, 0.0871558, 6.76112, 143.593, 47.4878)
+radius = 8.974
+radial_segments = 11
+rings = 12
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y1b1f")
 
-[node name="AcousticEmitter" parent="." instance=ExtResource("1_cdsg3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.6132, 2.76567, -8.54471)
-
-[node name="Waveguide" parent="." instance=ExtResource("2_dihug")]
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.4779, 24.1789, 24.0409)
+script = ExtResource("3_s2mmi")
 
 [node name="ircalc_dock" parent="." instance=ExtResource("3_dihug")]
 offset_left = 909.0
 offset_top = 27.0
-offset_right = 909.0
-offset_bottom = 27.0
+offset_right = -8.0
+offset_bottom = 1.0
+
+[node name="CountSpin" parent="ircalc_dock/dock_node/HBoxContainer/Handles" index="1"]
+value = 512.0
+
+[node name="SpeedSpin" parent="ircalc_dock/dock_node" index="2"]
+value = 34.0
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1198, 0.683487, -4.76229)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.76662, 0.76662, 0.76662, 1)
+light_energy = 1.057
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 1.315
+shadow_opacity = 0.94
+shadow_blur = 5.34
+
+[node name="AcousticEmitter" parent="." instance=ExtResource("4_s2mmi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.9055, 101.436, -17.3454)
+
+[node name="Waveguide" parent="." instance=ExtResource("5_jk1uq")]
+material_override = ExtResource("6_i0yh6")
+reduce_update_rate = 32
+
+[editable path="ircalc_dock"]

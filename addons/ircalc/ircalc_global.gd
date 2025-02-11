@@ -55,7 +55,7 @@ func start_simulation():
 	#sim_timer.start()
 	
 func stop_simulation():
-	sim_timer.stop()
+	#sim_timer.stop()
 	PhysicsServer3D.set_active(false)
 	for pf in pressurefields:
 		pf.set_simulating(false)

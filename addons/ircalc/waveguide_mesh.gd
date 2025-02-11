@@ -11,6 +11,7 @@ func _exit_tree() -> void:
 func begin():
 	mesh.clear_surfaces()
 	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
+	
 
 func shut():
 	mesh.surface_end()
