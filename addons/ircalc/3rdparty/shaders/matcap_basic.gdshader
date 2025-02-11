@@ -6,7 +6,7 @@
 
 shader_type spatial;
 //render_mode unshaded;
-render_mode vertex_lighting;
+render_mode unshaded;
 uniform sampler2D matcap : source_color, hint_default_black;
 uniform float metalness : hint_range(0.0,1.0) = 1.0;
 uniform vec4 color : source_color = vec4(1.0);

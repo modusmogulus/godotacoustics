@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ou1e7g0n5oak"
-path.s3tc="res://.godot/imported/mtcp_vfx_cld4.png-09a6f43a70caee1248b0a22eef0a2f2a.s3tc.ctex"
+path.s3tc="res://.godot/imported/mtcp_vfx_cld4.png-4c7fc835afee43cf2f14d1d09ff7952d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/ircalc/3rdparty/shaders/mtcp_vfx_cld4.png"
-dest_files=["res://.godot/imported/mtcp_vfx_cld4.png-09a6f43a70caee1248b0a22eef0a2f2a.s3tc.ctex"]
+source_file="res://addons/ircalc/3rdparty/materials/mtcp_vfx_cld4.png"
+dest_files=["res://.godot/imported/mtcp_vfx_cld4.png-4c7fc835afee43cf2f14d1d09ff7952d.s3tc.ctex"]
 
 [params]
 

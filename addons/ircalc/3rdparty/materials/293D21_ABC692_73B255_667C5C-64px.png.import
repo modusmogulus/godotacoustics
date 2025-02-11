@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq0vvvlrmkchn"
-path.s3tc="res://.godot/imported/chris_rollins_explo2.png-14bdd180f58cb2798ac2264597b42cc6.s3tc.ctex"
+uid="uid://cyucws7t7sif4"
+path.s3tc="res://.godot/imported/293D21_ABC692_73B255_667C5C-64px.png-1bf6d9fa647a05654b7c24b273c881f1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/ircalc/3rdparty/shaders/chris_rollins_explo2.png"
-dest_files=["res://.godot/imported/chris_rollins_explo2.png-14bdd180f58cb2798ac2264597b42cc6.s3tc.ctex"]
+source_file="res://addons/ircalc/3rdparty/materials/293D21_ABC692_73B255_667C5C-64px.png"
+dest_files=["res://.godot/imported/293D21_ABC692_73B255_667C5C-64px.png-1bf6d9fa647a05654b7c24b273c881f1.s3tc.ctex"]
 
 [params]
 

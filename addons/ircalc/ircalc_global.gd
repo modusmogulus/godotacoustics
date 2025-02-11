@@ -43,6 +43,8 @@ func update_waveguides():
 			wvg.add_verts(ar_pfpos, ar_pfnm)
 
 func start_simulation():
+	
+	PhysicsServer3D.set_active(true)
 	for lis in ac_listeners:
 		lis.start_rec()
 	#for ac_em in emitters:
@@ -51,7 +53,6 @@ func start_simulation():
 		pf.set_simulating(true)
 	
 	
-	PhysicsServer3D.set_active(true)
 	#sim_timer.start()
 	
 func stop_simulation():

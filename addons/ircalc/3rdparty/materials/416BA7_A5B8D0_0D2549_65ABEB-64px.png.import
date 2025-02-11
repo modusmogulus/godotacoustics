@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3np4evh06k6l"
-path.s3tc="res://.godot/imported/planetmatcap4.png-2fb868619c3114fa1a17a8f4715f0a00.s3tc.ctex"
+uid="uid://n4tl6o4uxne6"
+path.s3tc="res://.godot/imported/416BA7_A5B8D0_0D2549_65ABEB-64px.png-fe774f96e01f3993610580c654c691be.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/ircalc/3rdparty/shaders/planetmatcap4.png"
-dest_files=["res://.godot/imported/planetmatcap4.png-2fb868619c3114fa1a17a8f4715f0a00.s3tc.ctex"]
+source_file="res://addons/ircalc/3rdparty/materials/416BA7_A5B8D0_0D2549_65ABEB-64px.png"
+dest_files=["res://.godot/imported/416BA7_A5B8D0_0D2549_65ABEB-64px.png-fe774f96e01f3993610580c654c691be.s3tc.ctex"]
 
 [params]
 

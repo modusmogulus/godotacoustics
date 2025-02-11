@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b87w48njl4ywd"
-path.s3tc="res://.godot/imported/mtcp_firework.png-e8316d9e53c64f76a3ad2bcd521f2cb1.s3tc.ctex"
+uid="uid://k4dygfxr6v5r"
+path.s3tc="res://.godot/imported/ruohomatcap.jpg-a074f514d01814092ad516ba15c20eb3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/ircalc/3rdparty/shaders/mtcp_firework.png"
-dest_files=["res://.godot/imported/mtcp_firework.png-e8316d9e53c64f76a3ad2bcd521f2cb1.s3tc.ctex"]
+source_file="res://addons/ircalc/3rdparty/materials/ruohomatcap.jpg"
+dest_files=["res://.godot/imported/ruohomatcap.jpg-a074f514d01814092ad516ba15c20eb3.s3tc.ctex"]
 
 [params]
 

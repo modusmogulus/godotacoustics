@@ -1,6 +1,7 @@
 @tool
 extends MeshInstance3D
 var time = 0
+@export var wireframe: bool = false
 @export var reduce_update_rate: int = 10 
 func _enter_tree() -> void:
 	IRCalcGlobalScene.register_waveguide(self)
@@ -10,7 +11,10 @@ func _exit_tree() -> void:
 
 func begin():
 	mesh.clear_surfaces()
-	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
+	if wireframe:
+		mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
+	else:
+		mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
 	
 
 func shut():

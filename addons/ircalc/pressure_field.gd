@@ -33,18 +33,30 @@ func set_simulating(value: bool):
 	simu = value
 	soften_diffuse = IRCalcGlobalScene.soften_diffuse/(343/soundspeed)
 	soundspeed = IRCalcGlobalScene.soundspeed
-
+	
+	
 func _enter_tree() -> void:
 	IRCalcGlobalScene.register_pressure_field(self)
+	
+	
+	
 func _exit_tree() -> void:
 	IRCalcGlobalScene.unregister_pressure_field(self)
 	
 func _physics_process(delta: float) -> void:
+	
+	var space_state = get_world_3d().direct_space_state
+	
+	var query = PhysicsRayQueryParameters3D.create(global_position+global_basis.z*1000, -global_basis.z*10000)
+	var result = space_state.intersect_ray(query)
+	#if result.size() < 1: queue_free()
+	
 	if simu == false: return
+	
 	#print(pressure)
 	look_at(velocity*1000)
 	$wavetable.volume_db -= 0.005
-	if $wavetable && $wavetable.playing == false: $wavetable.play()
+	#if $wavetable && $wavetable.playing == false: $wavetable.play()
 	if soften_diffuse>0.0: $Soundfield.scale += (Vector3(soften_diffuse*delta, soften_diffuse*delta, soften_diffuse*delta))
 	for area in $Forcefield.get_overlapping_areas():
 		if area != $Forcefield && area:
@@ -69,5 +81,5 @@ func _physics_process(delta: float) -> void:
 		#dup.velocity.x += randf_range(-0.01, 0.01)
 		#dup.velocity.y += randf_range(-0.01, 0.01)
 		#dup.velocity.z += randf_range(-0.01, 0.01)
-		
+		$wavetable.play()
 		$wavetable.volume_db -= 0.015

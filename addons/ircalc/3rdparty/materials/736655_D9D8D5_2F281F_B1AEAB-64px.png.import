@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtbgwqqgno31v"
-path="res://.godot/imported/642464e4b7cd560a40545050325095583a27e54a_2_500x500.jpeg-f0b7705da239b9939741c782f3076db3.ctex"
+uid="uid://ddc7b5uigayfu"
+path="res://.godot/imported/736655_D9D8D5_2F281F_B1AEAB-64px.png-485c48470b91dadcacb7dee9fa423cf4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/ircalc/3rdparty/shaders/642464e4b7cd560a40545050325095583a27e54a_2_500x500.jpeg"
-dest_files=["res://.godot/imported/642464e4b7cd560a40545050325095583a27e54a_2_500x500.jpeg-f0b7705da239b9939741c782f3076db3.ctex"]
+source_file="res://addons/ircalc/3rdparty/materials/736655_D9D8D5_2F281F_B1AEAB-64px.png"
+dest_files=["res://.godot/imported/736655_D9D8D5_2F281F_B1AEAB-64px.png-485c48470b91dadcacb7dee9fa423cf4.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
