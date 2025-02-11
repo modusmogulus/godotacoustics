@@ -48,12 +48,10 @@ gravity = Vector3(0, 0, 0)
 [sub_resource type="SphereShape3D" id="SphereShape3D_ioc0h"]
 radius = 4.886
 
-[node name="PressureField" type="CharacterBody3D"]
+[node name="PressureField" type="StaticBody3D"]
 process_mode = 3
 collision_layer = 0
 collision_mask = 2049
-motion_mode = 1
-wall_min_slide_angle = 0.0
 script = ExtResource("1_c2dkg")
 
 [node name="Collider" type="CollisionShape3D" parent="."]

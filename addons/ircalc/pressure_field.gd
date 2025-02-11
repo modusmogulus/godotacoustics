@@ -1,11 +1,11 @@
 @tool
-extends CharacterBody3D
+extends StaticBody3D
 var vel_fixed: Vector3
 var simu: bool = false
 var soundspeed: float = 343
 var timescale: float = 1.0
 var final_sndspd: float
-
+var velocity: Vector3
 var pressure = 1.0
 var soften_diffuse: float
 
@@ -75,6 +75,7 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.normalized() * soundspeed
 	
 	var bodies = move_and_collide(velocity*1/60)
+	
 	if bodies:
 		velocity = 0.8*velocity + bodies.get_normal()*soundspeed
 		
