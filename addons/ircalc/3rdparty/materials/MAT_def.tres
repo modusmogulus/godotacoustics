@@ -1,11 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bqa5iusf2vitp"]
 
 [ext_resource type="Shader" uid="uid://8sfs25oat4vp" path="res://addons/ircalc/3rdparty/shaders/matcap_basic.gdshader" id="1_akbdy"]
-[ext_resource type="Texture2D" uid="uid://n4tl6o4uxne6" path="res://addons/ircalc/3rdparty/materials/416BA7_A5B8D0_0D2549_65ABEB-64px.png" id="2_akbdy"]
+[ext_resource type="Texture2D" uid="uid://cxebi80y1a1o" path="res://addons/ircalc/3rdparty/materials/snowmatcap.png" id="2_sfa2m"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_akbdy")
-shader_parameter/matcap = ExtResource("2_akbdy")
+shader_parameter/matcap = ExtResource("2_sfa2m")
 shader_parameter/metalness = 1.0
-shader_parameter/color = Color(0.712129, 0.71213, 0.712129, 1)
+shader_parameter/color = Color(0.942823, 0.942823, 0.942823, 1)

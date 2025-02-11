@@ -1,16 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://duu4kij01s5vk"]
+[gd_scene load_steps=25 format=4 uid="uid://duu4kij01s5vk"]
 
 [ext_resource type="Script" uid="uid://u5itcuk0qaoj" path="res://addons/ircalc/pressure_field.gd" id="1_c2dkg"]
 [ext_resource type="AudioStream" uid="uid://buqec72j3kq1a" path="res://addons/ircalc/wavetables/SAMPLES_DOWN.wav" id="4_ioc0h"]
 [ext_resource type="PackedScene" uid="uid://cx2hr84cedabb" path="res://addons/ircalc/models/wavevis.glb" id="4_qysnn"]
-[ext_resource type="Material" uid="uid://cmeftlhjjekun" path="res://addons/ircalc/3rdparty/materials/waveguidemat_exciting.tres" id="5_ioc0h"]
+[ext_resource type="Material" uid="uid://d1igs1nacdnbo" path="res://addons/ircalc/3rdparty/materials/waveguidemat_bland.tres" id="5_ioc0h"]
 [ext_resource type="AudioStream" uid="uid://dvgk6m08veh7p" path="res://addons/ircalc/wavetables/SAMPLES_UP.wav" id="5_qysnn"]
+[ext_resource type="Shader" uid="uid://k867t2k1ddfa" path="res://addons/ircalc/3rdparty/shaders/matcap_basic_add.gdshader" id="6_2j0su"]
+[ext_resource type="Texture2D" uid="uid://t444gkn3p33m" path="res://addons/ircalc/3rdparty/materials/particles_fak2ew.png" id="7_2j0su"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ccqrm"]
 radius = 0.897
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c2dkg"]
-radius = 1.0
+radius = 20.808
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ioc0h"]
 streams_count = 2
@@ -18,35 +20,109 @@ stream_0/stream = ExtResource("5_qysnn")
 stream_1/stream = ExtResource("4_ioc0h")
 
 [sub_resource type="Gradient" id="Gradient_ioc0h"]
-offsets = PackedFloat32Array(0.367647, 0.720588)
-colors = PackedColorArray(1, 1, 1, 1, 0.154412, 0.154412, 0.154412, 0.154412)
+offsets = PackedFloat32Array(0.419118, 0.492647)
+colors = PackedColorArray(1, 0, 0, 0.152941, 1, 1, 1, 0.466667)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qysnn"]
 gradient = SubResource("Gradient_ioc0h")
-width = 7
-height = 7
+width = 6
+height = 6
 fill = 1
 fill_from = Vector2(0.495, 0.485)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epifv"]
-blend_mode = 1
+transparency = 2
+alpha_scissor_threshold = 0.448
+alpha_antialiasing_mode = 0
 shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
-albedo_color = Color(0.219501, 0.219501, 0.219501, 1)
+vertex_color_use_as_albedo = true
 albedo_texture = SubResource("GradientTexture2D_qysnn")
 billboard_mode = 1
 
+[sub_resource type="Gradient" id="Gradient_qysnn"]
+offsets = PackedFloat32Array(0, 0.314516, 0.483871, 0.637097, 0.782258, 0.927419)
+colors = PackedColorArray(1, 0, 0.716667, 1, 0, 0.333333, 1, 1, 0, 0.616667, 1, 1, 0, 1, 0.283333, 1, 1, 0.966667, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2j0su"]
+gradient = SubResource("Gradient_qysnn")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4fuk7"]
-emission_shape = 1
-emission_sphere_radius = 4.96
-direction = Vector3(0, 0, 0)
+emission_shape = 2
+emission_sphere_radius = 11.96
+direction = Vector3(0, -1.03, 0)
+spread = 6.28
+initial_velocity_max = 21.27
+orbit_velocity_min = -2.0
+orbit_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
+attractor_interaction_enabled = false
+scale_min = 361.7
+scale_max = 361.7
+color_ramp = SubResource("GradientTexture1D_2j0su")
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 8.89
+turbulence_noise_speed = Vector3(0.225, 0.115, 0.235)
 
 [sub_resource type="QuadMesh" id="QuadMesh_q6iem"]
+size = Vector2(5, 5)
+
+[sub_resource type="Gradient" id="Gradient_gto1x"]
+offsets = PackedFloat32Array(0.661765, 0.801471)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2j0su"]
+gradient = SubResource("Gradient_gto1x")
+width = 6
+height = 6
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fuk7"]
+render_priority = 0
+shader = ExtResource("6_2j0su")
+shader_parameter/mask = SubResource("GradientTexture2D_2j0su")
+shader_parameter/matcap = ExtResource("7_2j0su")
+shader_parameter/metalness = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpx14"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_csx1j"]
+_surfaces = [{
+"aabb": AABB(-0.866025, 0, -1, 1.73205, 0.18643, 2),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AAAGAAgAAAABAAYAAwAAAAgAAQAJAAYACQAIAAYAAQAEAAkAAwAIAAcAAgADAAcACAAKAAcAAgAHAAoACQAKAAgABQACAAoABAALAAkABAAFAAsACgAJAAsABQAKAAsA"),
+"lods": [0.111873, PackedByteArray("AAAGAAcAAAABAAYAAQAEAAYABAAHAAYAAwAAAAcABAAFAAcAAgADAAcABQACAAcA"), 0.216816, PackedByteArray("AAABAAIAAwAAAAIABAACAAEABAAFAAIA")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("/38AAAAAAAAAAAAA/z8AAP//AAD/vwAA//8AAP8/AAAAAAAA/78AAP9/AAD//wAAv1L//19pAAA/rf//X2kAAP9///+/UgAAv1L//5+WAAA/rf//n5YAAP9///8/rQAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1kx5l"]
+resource_name = "wavevis_Circle"
+_surfaces = [{
+"aabb": AABB(-0.866025, 0, -1, 1.73205, 0.18643, 2),
+"attribute_data": PackedByteArray("/38WBmsWC0OT6fO8k+kLQ2sW87z/f+j5rFpyalKlcmr/f+ZUUqVyaqxajJVSpYyV/38Yqw=="),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("AAAGAAgAAAABAAYAAwAAAAgAAwAIAAkAAQAKAAYACgAIAAYAAQAEAAoACAALAAkACgALAAgABAAMAAoACwAKAAwABAAFAAwABQALAAwABQACAAsAAgADAAcAAgAHAAsA"),
+"lods": [0.111873, PackedByteArray("AAAGAAcAAAABAAYAAQAEAAYABAAHAAYAAwAAAAcABAAFAAcAAgADAAcABQACAAcA"), 0.216816, PackedByteArray("AAABAAIAAwAAAAIABAACAAEABAAFAAIA")],
+"material": SubResource("StandardMaterial3D_kpx14"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 13,
+"vertex_data": PackedByteArray("/38AAAAAcEsAAAAA/z/2RP//AAD/v845//8AAP8/5kQAAAAA/7/OOf9/AAD//480v1L//19pe0M/rf//X2ltQ/9///+/UpNHP63//19pgkO/Uv//n5b7Oz+t//+flvs7/3///z+tbDgAAP9/dgw7Ze8XyYzRGuWLyQwQaAAA/3/aCG1toBIGiAAA/3+KEkOJ+AjabiUR94gAAP9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_csx1j")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ioc0h"]
-radius = 4.886
+radius = 1.586
 
 [node name="PressureField" type="StaticBody3D"]
 process_mode = 3
@@ -69,32 +145,49 @@ debug_color = Color(0.222327, 0.510533, 1, 1)
 debug_fill = false
 
 [node name="wavetable" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.61887)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.983078)
 stream = SubResource("AudioStreamRandomizer_ioc0h")
 attenuation_model = 3
 max_distance = 495.43
+emission_angle_enabled = true
+emission_angle_degrees = 39.9
 
-[node name="Soundfield" parent="." instance=ExtResource("4_qysnn")]
-transform = Transform3D(5.215, 0, 0, 0, -2.27955e-07, 5.215, 0, -5.215, -2.27955e-07, 0.232402, 0, 0.0214216)
-
-[node name="wavevis" parent="Soundfield" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.490465, 3.55271e-15, 0, 0, 1, 0, 0, 0)
-surface_material_override/0 = ExtResource("5_ioc0h")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Soundfield"]
-transform = Transform3D(1, 0, 0, 0, 0.490465, 0, 0, 3.55271e-15, 1, 0, 0, 0)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(4.44, 0, 0, 0, -9.51887e-08, 4.44, 0, -2.17766, -1.94079e-07, 0.232402, 0, 0.416493)
+visible = false
 material_override = SubResource("StandardMaterial3D_epifv")
-amount = 148
-lifetime = 9.83
+emitting = false
+amount = 16
+lifetime = 1.23
+local_coords = true
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_4fuk7")
 draw_pass_1 = SubResource("QuadMesh_q6iem")
 
-[node name="PressureArea" type="Area3D" parent="."]
+[node name="Soundfield" parent="." instance=ExtResource("4_qysnn")]
+transform = Transform3D(4.44, 0, 0, 0, -1.94079e-07, 4.44, 0, -4.44, -1.94079e-07, 0.232402, 0, 0.0214216)
+
+[node name="Circle" parent="Soundfield" index="0"]
+material_override = ExtResource("5_ioc0h")
+
+[node name="Circle2" type="MeshInstance3D" parent="Soundfield"]
+transform = Transform3D(1.345, 0, 0, 0, 1.345, -2.13163e-14, 0, 2.13163e-14, 1.345, 0, -0.274587, -1.20026e-08)
+material_override = SubResource("ShaderMaterial_4fuk7")
+mesh = SubResource("ArrayMesh_1kx5l")
+skeleton = NodePath("")
+
+[node name="Circle3" type="MeshInstance3D" parent="Soundfield"]
+transform = Transform3D(1.345, 0, 0, 0, 1.345, -1.77636e-14, 0, 1.77636e-14, 1.345, 0, -0.0298684, -1.30559e-09)
+material_override = SubResource("ShaderMaterial_4fuk7")
+mesh = SubResource("ArrayMesh_1kx5l")
+skeleton = NodePath("")
+
+[node name="PressureArea" type="Area3D" parent="Soundfield"]
+transform = Transform3D(0.191755, 0, 0, 0, -8.38186e-09, -0.191755, 0, 0.191755, -8.38186e-09, -0.0445641, 0.00410769, 1.79553e-10)
 collision_layer = 1073741824
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PressureArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Soundfield/PressureArea"]
 shape = SubResource("SphereShape3D_ioc0h")
 
 [editable path="Soundfield"]

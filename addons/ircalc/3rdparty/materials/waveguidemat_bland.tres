@@ -1,18 +1,23 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://d1igs1nacdnbo"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://d1igs1nacdnbo"]
 
 [ext_resource type="Shader" uid="uid://k867t2k1ddfa" path="res://addons/ircalc/3rdparty/shaders/matcap_basic_add.gdshader" id="1_0desp"]
-[ext_resource type="Texture2D" uid="uid://dtbgwqqgno31v" path="res://addons/ircalc/3rdparty/materials/642464e4b7cd560a40545050325095583a27e54a_2_500x500.jpeg" id="2_gto1x"]
+[ext_resource type="Texture2D" uid="uid://t444gkn3p33m" path="res://addons/ircalc/3rdparty/materials/particles_fak2ew.png" id="2_gto1x"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xoq2k"]
-render_priority = 127
-shader = ExtResource("1_0desp")
-shader_parameter/matcap = ExtResource("2_gto1x")
-shader_parameter/metalness = 1.0
-shader_parameter/color = Color(1, 1, 1, 0.188235)
+[sub_resource type="Gradient" id="Gradient_gto1x"]
+offsets = PackedFloat32Array(0.573529, 0.654412)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ghq8v"]
+gradient = SubResource("Gradient_gto1x")
+width = 6
+height = 6
+fill = 1
+fill_from = Vector2(0.51, 0.5)
 
 [resource]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_xoq2k")
 shader = ExtResource("1_0desp")
-shader_parameter/metalness = 1.0
-shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/mask = SubResource("GradientTexture2D_ghq8v")
+shader_parameter/matcap = ExtResource("2_gto1x")
+shader_parameter/metalness = 0.0
+shader_parameter/color = Color(0, 0, 0, 1)

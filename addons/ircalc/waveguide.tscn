@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://doldw1id745e4"]
 
-[ext_resource type="Material" uid="uid://d1igs1nacdnbo" path="res://addons/ircalc/3rdparty/materials/waveguidemat_bland.tres" id="1_1wse8"]
+[ext_resource type="Material" uid="uid://cmeftlhjjekun" path="res://addons/ircalc/3rdparty/materials/waveguidemat_exciting.tres" id="1_1wse8"]
 [ext_resource type="Script" uid="uid://bchg8yhufmw6c" path="res://addons/ircalc/waveguide_mesh.gd" id="1_1y5dx"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_1wse8"]

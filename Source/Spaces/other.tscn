@@ -2,13 +2,13 @@
 
 [ext_resource type="Material" uid="uid://bqa5iusf2vitp" path="res://addons/ircalc/3rdparty/materials/MAT_def.tres" id="1_jk1uq"]
 [ext_resource type="PackedScene" uid="uid://6cg2bv5relm0" path="res://addons/ircalc/GUI/maindock/ircalc_dock.tscn" id="3_dihug"]
-[ext_resource type="Script" uid="uid://4q6ldkg1fp0f" path="res://addons/ircalc/test/debug_freecam_by_ninjat.gd" id="3_s2mmi"]
+[ext_resource type="Script" uid="uid://4q6ldkg1fp0f" path="res://addons/ircalc/test/debug_freecam_by_ninjat.gd" id="4_jk1uq"]
 [ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="4_s2mmi"]
 
 [sub_resource type="Gradient" id="Gradient_jk1uq"]
 interpolation_color_space = 1
-offsets = PackedFloat32Array(0, 0.537879)
-colors = PackedColorArray(0, 0, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.371212, 0.55303)
+colors = PackedColorArray(1, 1, 1, 1, 0.0999999, 0, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_i0yh6"]
 gradient = SubResource("Gradient_jk1uq")
@@ -28,14 +28,18 @@ background_mode = 2
 background_color = Color(0.262932, 0.262932, 0.262932, 1)
 sky = SubResource("Sky_jk1uq")
 ambient_light_source = 2
-ambient_light_color = Color(0.141469, 0.189496, 0.26288, 1)
+ambient_light_color = Color(0.332881, 0.332881, 0.332881, 1)
 ambient_light_energy = 2.83
 tonemap_mode = 1
 tonemap_exposure = 1.55
-glow_intensity = 5.33
+glow_intensity = 3.53
+glow_bloom = 0.08
 glow_hdr_scale = 0.39
-fog_light_color = Color(0.140262, 0.156196, 0.181246, 1)
-fog_light_energy = 0.0
+fog_mode = 1
+fog_light_color = Color(0.775063, 0.775064, 0.775063, 1)
+fog_light_energy = 0.31
+fog_density = 1.0
+fog_sky_affect = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_saemr"]
 resource_name = "protomat"
@@ -749,34 +753,12 @@ size = Vector3(441.119, 233.79, 421.748)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y1b1f")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.4779, 24.1789, 24.0409)
-script = ExtResource("3_s2mmi")
-
-[node name="ircalc_dock" parent="." instance=ExtResource("3_dihug")]
-offset_left = 909.0
-offset_top = 27.0
-offset_right = -8.0
-offset_bottom = 1.0
-
-[node name="CountSpin" parent="ircalc_dock/dock_node/HBoxContainer/Handles" index="1"]
-value = 512.0
-
-[node name="SpeedSpin" parent="ircalc_dock/dock_node" index="2"]
-value = 34.0
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1198, 0.683487, -4.76229)
-current = true
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-light_color = Color(0.76662, 0.76662, 0.76662, 1)
-light_energy = 1.057
+transform = Transform3D(1, 0, 0, 0, 0.260926, 0.965359, 0, -0.965359, 0.260926, 0, 0, 0)
+light_energy = 2.566
 shadow_enabled = true
-shadow_bias = 0.0
-shadow_normal_bias = 1.315
-shadow_opacity = 0.94
+shadow_bias = 10.0
+shadow_normal_bias = 10.0
 shadow_blur = 5.34
 
 [node name="kauppakeskus duo4" type="StaticBody3D" parent="."]
@@ -902,7 +884,139 @@ skeleton = NodePath("")
 transform = Transform3D(30.0818, 0, 0, 0, -7.18933e-06, 78.1137, 0, -60.3084, -9.31188e-06, -166.78, 19.3032, -153.582)
 shape = SubResource("ConcavePolygonShape3D_4iusd")
 
-[node name="AcousticEmitter" parent="." instance=ExtResource("4_s2mmi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.1006, 25.842, -4.3034)
+[node name="kauppakeskus duo5" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.00363897, 0, 0.749991, 0, 0.75, 0, -0.749991, 0, -0.00363897, 110.481, 3.304, -129.262)
 
-[editable path="ircalc_dock"]
+[node name="Plane" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -1.4145, 0)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_cb7y3")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -1.4145, 0)
+shape = SubResource("ConcavePolygonShape3D_jk1uq")
+
+[node name="ker2" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -99.8484, 10.4214, -9.62658)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_0rfhe")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -99.8484, 10.4214, -9.62658)
+shape = SubResource("ConcavePolygonShape3D_i0yh6")
+
+[node name="Cube" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 47.6859, 17.4054, -22.6522)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_yi58l")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 47.6859, 17.4054, -22.6522)
+shape = SubResource("ConcavePolygonShape3D_4li3a")
+
+[node name="katto" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -115.595, 20.4068, -23.3604)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_6n5xc")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -115.595, 20.4068, -23.3604)
+shape = SubResource("ConcavePolygonShape3D_yem7u")
+
+[node name="Plane_002" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(99.415, 0.913274, -10.762, 10.7993, -9.95892, 98.9151, -0.16841, -99.4987, -9.99929, -51.0135, 20.5239, 99.4036)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_5nc7p")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(99.415, 0.913274, -10.762, 10.7993, -9.95892, 98.9151, -0.16841, -99.4987, -9.99929, -51.0135, 20.5239, 99.4036)
+shape = SubResource("ConcavePolygonShape3D_jd6ut")
+
+[node name="Cube_001" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(7543.33, 0, 0, 0, -0.00156767, 11.5353, 0, -13150.6, -1.37511e-06, 28.0286, 10.8853, -25.1049)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_wglni")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(7543.33, 0, 0, 0, -0.00156767, 11.5353, 0, -13150.6, -1.37511e-06, 28.0286, 10.8853, -25.1049)
+shape = SubResource("ConcavePolygonShape3D_l66t0")
+
+[node name="lattia" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -2.07151, -19.6457)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_kdp6r")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -2.07151, -19.6457)
+shape = SubResource("ConcavePolygonShape3D_8scbo")
+
+[node name="Plane_001" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -112.128, -2.36061, -19.431)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_mvtp1")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -112.128, -2.36061, -19.431)
+shape = SubResource("ConcavePolygonShape3D_cl8oh")
+
+[node name="Cylinder_001" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(1.81463e-05, 3.8743e-05, 100, 152.222, 0, -5.96046e-06, 4.53657e-06, 100, -3.57628e-05, -90.9367, 20.2744, -22.3499)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_wjhig")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(1.81463e-05, 3.8743e-05, 100, 152.222, 0, -5.96046e-06, 4.53657e-06, 100, -3.57628e-05, -90.9367, 20.2744, -22.3499)
+shape = SubResource("ConcavePolygonShape3D_ul5a6")
+
+[node name="Cylinder_002" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(1.81463e-05, 3.8743e-05, 100, 152.222, 0, -5.96046e-06, 4.53657e-06, 100, -3.57628e-05, 13.771, 20.2744, -22.3499)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_7b83k")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(1.81463e-05, 3.8743e-05, 100, 152.222, 0, -5.96046e-06, 4.53657e-06, 100, -3.57628e-05, 13.771, 20.2744, -22.3499)
+shape = SubResource("ConcavePolygonShape3D_xopf1")
+
+[node name="Plane_003" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -16.543, 10.1564, -20.653)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_14gdx")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -16.543, 10.1564, -20.653)
+shape = SubResource("ConcavePolygonShape3D_pxka8")
+
+[node name="Plane_004" type="MeshInstance3D" parent="kauppakeskus duo5"]
+transform = Transform3D(30.0818, 0, 0, 0, -7.18933e-06, 78.1137, 0, -60.3084, -9.31188e-06, -166.78, 19.3032, -153.582)
+material_override = ExtResource("1_jk1uq")
+mesh = SubResource("ArrayMesh_dd7ok")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="kauppakeskus duo5"]
+transform = Transform3D(30.0818, 0, 0, 0, -7.18933e-06, 78.1137, 0, -60.3084, -9.31188e-06, -166.78, 19.3032, -153.582)
+shape = SubResource("ConcavePolygonShape3D_4iusd")
+
+[node name="ircalc_dock" parent="." instance=ExtResource("3_dihug")]
+offset_left = 888.0
+offset_top = 32.0
+offset_right = 888.0
+offset_bottom = 32.0
+
+[node name="AcousticEmitter" parent="." instance=ExtResource("4_s2mmi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.2471, 7.90073, -77.8293)
+
+[node name="FreeLookCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5705, 7.00043, -115.987)
+script = ExtResource("4_jk1uq")
+metadata/_custom_type_script = ExtResource("4_jk1uq")

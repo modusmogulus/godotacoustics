@@ -24,7 +24,15 @@ func create_pfields(count: int):
 		p.global_position.z += randf_range(-0.5*scale.z, 0.5*scale.z)
 		randomize()
 		p.velocity = (p.global_position - global_position)*40000
-		p.look_at((p.global_position - global_position)*40000)
+		if IRCalcGlobalScene.optimize_wave == true:
+			var space_state = get_world_3d().direct_space_state
+			var query = PhysicsRayQueryParameters3D.create(global_position, (p.global_position-global_position)*10000)
+			var result = space_state.intersect_ray(query)
+			p.look_at((p.global_position - global_position)*40000)
+			if result.size() < 1: 
+				#p.global_position = global_position+(p.global_position-global_position)
+				p.queue_free()
+			
 		#p.global_position = Vector3(cos(i), sin(i), cos(i)*PI)
 func _exit_tree() -> void:
 	IRCalcGlobalScene.unregister_acoustic_emitter(self)

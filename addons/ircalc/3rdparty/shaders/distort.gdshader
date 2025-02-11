@@ -21,7 +21,7 @@ void vertex() {
 void fragment() {
 	vec2 noiseValue  = (texture(noise_texture, SCREEN_UV + (TIME * speed)).rg * 2.0) - 1.0; // Range: -1.0 to 1.0
 
-	vec2 noiseDistortion = (noiseValue * distortion);
+	vec2 noiseDistortion = (noiseValue * distortion * NORMAL.xy);
 
 	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV + noiseDistortion);
 

@@ -31,7 +31,8 @@ var soften_diffuse: float
 
 func set_simulating(value: bool):
 	simu = value
-	soften_diffuse = IRCalcGlobalScene.soften_diffuse/(343/soundspeed)
+	timescale = IRCalcGlobalScene.time_scale
+	soften_diffuse = IRCalcGlobalScene.soften_diffuse*IRCalcGlobalScene.time_scale
 	soundspeed = IRCalcGlobalScene.soundspeed
 	
 	
@@ -45,23 +46,19 @@ func _exit_tree() -> void:
 	
 func _physics_process(delta: float) -> void:
 	
-	var space_state = get_world_3d().direct_space_state
 	
-	var query = PhysicsRayQueryParameters3D.create(global_position+global_basis.z*1000, -global_basis.z*10000)
-	var result = space_state.intersect_ray(query)
-	#if result.size() < 1: queue_free()
 	
 	if simu == false: return
-	
+	#$GPUParticles3D.emitting = true
 	#print(pressure)
 	look_at(velocity*1000)
 	$wavetable.volume_db -= 0.005
 	#if $wavetable && $wavetable.playing == false: $wavetable.play()
-	if soften_diffuse>0.0: $Soundfield.scale += (Vector3(soften_diffuse*delta, soften_diffuse*delta, soften_diffuse*delta))
+	if soften_diffuse>0.0: $Soundfield.scale += (Vector3(soften_diffuse, soften_diffuse, soften_diffuse))
 	for area in $Forcefield.get_overlapping_areas():
 		if area != $Forcefield && area:
-			if absf(velocity.dot(area.get_parent().velocity)) < 0.1 or velocity.length() < 1.0:
-				velocity += (global_position - area.global_position) * 1.55
+			if absf(velocity.dot(area.get_parent().velocity)) < 0.5 or velocity.length() < 1.0:
+				velocity += (global_position - area.global_position) * (1-velocity.dot(area.get_parent().velocity))*50
 			#velocity += velocity.reflect((velocity - area.get_parent().velocity).normalized())*0.1
 			
 			#area.get_parent().velocity -= velocity
@@ -72,15 +69,15 @@ func _physics_process(delta: float) -> void:
 	#velocity = clamp(velocity, Vector3(-1.0, -1.0, -1.0), Vector3(1.0, 1.0, 1.0))
 	velocity = velocity * 4096
 	#velocity.y = 0
-	velocity = velocity.normalized() * soundspeed
+	velocity = velocity.normalized() * soundspeed * timescale
 	
 	var bodies = move_and_collide(velocity*1/60)
 	
 	if bodies:
-		velocity = 0.8*velocity + bodies.get_normal()*soundspeed
-		
+		$Soundfield.visible = true
+		velocity = 0.8*velocity + bodies.get_normal()*soundspeed* timescale
+		#$Soundfield.scale = $Soundfield.scale * 0.9
 		#dup.velocity.x += randf_range(-0.01, 0.01)
 		#dup.velocity.y += randf_range(-0.01, 0.01)
 		#dup.velocity.z += randf_range(-0.01, 0.01)
-		$wavetable.play()
 		$wavetable.volume_db -= 0.015

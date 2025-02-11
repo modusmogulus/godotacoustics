@@ -9,6 +9,8 @@ var waveguides = []
 var soften_diffuse: float = 10.0
 var soundspeed: float = 343.0 #m/s
 var emitter_count = 16
+var optimize_wave: bool = false
+var time_scale = 1.0
 
 func user_req_prepare():
 	for ac_em in emitters:
@@ -17,9 +19,18 @@ func user_req_prepare():
 func set_sim_timer(timer: Timer):
 	sim_timer = timer
 
+func set_time_scale(multiplier: float):
+	time_scale = multiplier
+
 func set_soften_diffuse(amount: float):
 	soften_diffuse = amount
 
+func set_optimize_wave(val: bool):
+	optimize_wave = val
+	
+func get_optimize_wave() -> bool:
+	return optimize_wave
+	
 func set_emitter_count(count: int):
 	emitter_count = count
 	

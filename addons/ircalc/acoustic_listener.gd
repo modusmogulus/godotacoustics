@@ -4,7 +4,9 @@ extends Node3D
 
 var abuf1: PackedFloat32Array = [] #virtual audio buffer
 var time: float = 0.0
-
+var buf = $ear/buf
+var pr: float = 0.0 #pressure
+ 
 func start_rec() -> void:
 	abuf1.fill(0.0)
 	time = 0.0
