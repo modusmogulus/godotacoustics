@@ -174,14 +174,24 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7ui4")
 text = "Stop auralization"
 
+[node name="ButtonPlayIR" type="Button" parent="dock_node"]
+layout_mode = 0
+offset_top = 473.0
+offset_right = 208.0
+offset_bottom = 515.0
+theme = ExtResource("2_x7ui4")
+theme_type_variation = &"Regular"
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_x7ui4")
+text = "Play impulse response"
+
 [node name="StateLabel" type="Label" parent="dock_node"]
 layout_mode = 2
-offset_left = 4.0
-offset_top = 473.0
-offset_right = 232.0
-offset_bottom = 534.0
+offset_left = 5.0
+offset_top = 615.0
+offset_right = 233.0
+offset_bottom = 632.0
 theme = ExtResource("2_x7ui4")
-text = "0.0"
 uppercase = true
 
 [node name="Timer" type="Timer" parent="dock_node"]
@@ -194,3 +204,5 @@ ignore_time_scale = true
 [connection signal="toggled" from="dock_node/OptimizeCheckBox" to="dock_node" method="_on_optimize_check_box_toggled"]
 [connection signal="pressed" from="dock_node/ButtonStartSim2" to="dock_node" method="_on_button_start_sim_pressed"]
 [connection signal="pressed" from="dock_node/ButtonStopSim" to="dock_node" method="_on_button_stop_sim_pressed"]
+[connection signal="pressed" from="dock_node/ButtonPlayIR" to="dock_node" method="_on_button_stop_sim_pressed"]
+[connection signal="pressed" from="dock_node/ButtonPlayIR" to="dock_node" method="_on_button_play_ir_pressed"]

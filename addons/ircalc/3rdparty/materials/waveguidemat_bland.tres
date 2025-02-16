@@ -20,4 +20,4 @@ shader = ExtResource("1_0desp")
 shader_parameter/mask = SubResource("GradientTexture2D_ghq8v")
 shader_parameter/matcap = ExtResource("2_gto1x")
 shader_parameter/metalness = 0.0
-shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/color = Color(0.0166664, 0, 1, 1)

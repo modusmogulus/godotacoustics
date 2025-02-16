@@ -6,9 +6,12 @@ var soundspeed: float = 343
 var timescale: float = 1.0
 var final_sndspd: float
 var velocity: Vector3
-var pressure = 1.0
+var pressure: float = 1.0
 var soften_diffuse: float
-
+var dB_SPL: float = 1.0
+@export
+var visualizer: MeshInstance3D
+@export var pressurearea: Area3D
 # =================== The laws for this scene ========
 #    
 #    (1)
@@ -49,10 +52,25 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if simu == false: return
+
+	pressure *= 0.9
+	#dB_SPL = log(pressure) / log(10)*10 #Godot logarithm is NOT base 10 by default. This fixes it
+	#But the real question is... WHAT THE FUCK IS A LOGARITHM?????
+	#ALL MATH CLASSES I TOOK USES FUCKING DIFFERENT BASES OR NUMBERS OF ARGUMENTS???
+	
+	pressurearea.set_meta("pressure", pressure)
+	pressurearea.set_meta("dB_SPL", dB_SPL)
+	var material = visualizer.get_surface_override_material(0)
+	#var col = Color(Color.from_hsv(1-0.7*pressure, 1.0, 1.0, 1.0))
+	var col = Color.WHITE
+	col.a = pressure
+	material.set_shader_parameter("color", col)
+	visualizer.set_surface_override_material(0, material)
+		
 	#$GPUParticles3D.emitting = true
 	#print(pressure)
 	look_at(velocity*1000)
-	$wavetable.volume_db -= 0.005
+	#$wavetable.volume_db -= 0.005
 	#if $wavetable && $wavetable.playing == false: $wavetable.play()
 	if soften_diffuse>0.0: $Soundfield.scale += (Vector3(soften_diffuse, soften_diffuse, soften_diffuse))
 	for area in $Forcefield.get_overlapping_areas():
@@ -74,10 +92,12 @@ func _physics_process(delta: float) -> void:
 	var bodies = move_and_collide(velocity*1/60)
 	
 	if bodies:
+		pressure *= 0.2
 		$Soundfield.visible = true
+		
 		velocity = 0.8*velocity + bodies.get_normal()*soundspeed* timescale
 		#$Soundfield.scale = $Soundfield.scale * 0.9
 		#dup.velocity.x += randf_range(-0.01, 0.01)
 		#dup.velocity.y += randf_range(-0.01, 0.01)
 		#dup.velocity.z += randf_range(-0.01, 0.01)
-		$wavetable.volume_db -= 0.015
+		#$wavetable.volume_db -= 0.015

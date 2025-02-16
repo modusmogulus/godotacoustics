@@ -16,6 +16,7 @@ func _start_the_sim() -> void:
 	IRCalcGlobalScene.set_time_scale($TimeScaleSlider.value * 0.01)
 	IRCalcGlobalScene.start_simulation()
 	
+	
 func _process(delta: float) -> void:
 	if IRCalcGlobalScene.sim_timer && IRCalcGlobalScene.get_sim_duration() != 0:
 		$StateLabel.text = str(IRCalcGlobalScene.get_sim_duration())
@@ -31,3 +32,7 @@ func _on_button_spawn_pressed() -> void:
 
 func _on_optimize_check_box_toggled(toggled_on: bool) -> void:
 	IRCalcGlobalScene.set_optimize_wave(toggled_on)
+
+
+func _on_button_play_ir_pressed() -> void:
+	IRCalcGlobalScene.play_ir()

@@ -1,14 +1,26 @@
-[gd_scene load_steps=59 format=4 uid="uid://dxt6mwqej3cs"]
+[gd_scene load_steps=64 format=4 uid="uid://dxt6mwqej3cs"]
 
+[ext_resource type="Shader" uid="uid://bsp0o17a4ht8a" path="res://addons/ircalc/3rdparty/materials/matcap_normal_tripla.gdshader" id="1_4li3a"]
 [ext_resource type="Material" uid="uid://bqa5iusf2vitp" path="res://addons/ircalc/3rdparty/materials/MAT_def.tres" id="1_jk1uq"]
+[ext_resource type="Texture2D" uid="uid://crpu5y5m2stpw" path="res://addons/ircalc/3rdparty/materials/617586_23304C_1B1E30_4988CF.png" id="2_4li3a"]
+[ext_resource type="Texture2D" uid="uid://blqgxo2kjk7ap" path="res://addons/ircalc/3rdparty/materials/beveler4_normals.png" id="3_4li3a"]
 [ext_resource type="PackedScene" uid="uid://6cg2bv5relm0" path="res://addons/ircalc/GUI/maindock/ircalc_dock.tscn" id="3_dihug"]
 [ext_resource type="Script" uid="uid://4q6ldkg1fp0f" path="res://addons/ircalc/test/debug_freecam_by_ninjat.gd" id="4_jk1uq"]
-[ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="4_s2mmi"]
+[ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="8_jd6ut"]
+[ext_resource type="PackedScene" uid="uid://dghemc2qe87ed" path="res://addons/ircalc/acoustic_listener.tscn" id="8_yem7u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l66t0"]
+render_priority = 0
+shader = ExtResource("1_4li3a")
+shader_parameter/matcap = ExtResource("2_4li3a")
+shader_parameter/normal_map = ExtResource("3_4li3a")
+shader_parameter/scale = Vector3(0.085, -0.04, -0.09)
+shader_parameter/offset = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_jk1uq"]
 interpolation_color_space = 1
-offsets = PackedFloat32Array(0.371212, 0.55303)
-colors = PackedColorArray(1, 1, 1, 1, 0.0999999, 0, 1, 1)
+offsets = PackedFloat32Array(0.371212, 0.621212)
+colors = PackedColorArray(0.0941176, 0.101961, 0.109804, 1, 0.490196, 0.564706, 0.643137, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_i0yh6"]
 gradient = SubResource("Gradient_jk1uq")
@@ -25,21 +37,23 @@ radiance_size = 2
 
 [sub_resource type="Environment" id="Environment_y1b1f"]
 background_mode = 2
-background_color = Color(0.262932, 0.262932, 0.262932, 1)
 sky = SubResource("Sky_jk1uq")
 ambient_light_source = 2
 ambient_light_color = Color(0.332881, 0.332881, 0.332881, 1)
 ambient_light_energy = 2.83
 tonemap_mode = 1
 tonemap_exposure = 1.55
-glow_intensity = 3.53
-glow_bloom = 0.08
+glow_intensity = 0.86
+glow_bloom = 0.48
 glow_hdr_scale = 0.39
 fog_mode = 1
-fog_light_color = Color(0.775063, 0.775064, 0.775063, 1)
+fog_light_color = Color(0.4408, 0.51272, 0.58, 1)
 fog_light_energy = 0.31
-fog_density = 1.0
+fog_density = 0.7843
 fog_sky_affect = 0.0
+fog_height = 160.63
+fog_depth_begin = 78.5
+fog_depth_end = 196.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_saemr"]
 resource_name = "protomat"
@@ -746,23 +760,15 @@ data = PackedVector3Array(0.1439, 0.1439, 0, 0.048, 0.1439, 0, 0.048, 0.11, 0.02
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.954, -116.895, -8.55644)
-material_override = ExtResource("1_jk1uq")
+material_override = SubResource("ShaderMaterial_l66t0")
 use_collision = true
 size = Vector3(441.119, 233.79, 421.748)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y1b1f")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.260926, 0.965359, 0, -0.965359, 0.260926, 0, 0, 0)
-light_energy = 2.566
-shadow_enabled = true
-shadow_bias = 10.0
-shadow_normal_bias = 10.0
-shadow_blur = 5.34
-
 [node name="kauppakeskus duo4" type="StaticBody3D" parent="."]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -211.803, 3.304, -37.4034)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -211.803, 4.92656, -37.4034)
 
 [node name="Plane" type="MeshInstance3D" parent="kauppakeskus duo4"]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, -1.4145, 0)
@@ -1007,16 +1013,26 @@ skeleton = NodePath("")
 transform = Transform3D(30.0818, 0, 0, 0, -7.18933e-06, 78.1137, 0, -60.3084, -9.31188e-06, -166.78, 19.3032, -153.582)
 shape = SubResource("ConcavePolygonShape3D_4iusd")
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="ircalc_dock" parent="." instance=ExtResource("3_dihug")]
 offset_left = 888.0
 offset_top = 32.0
 offset_right = 888.0
 offset_bottom = 32.0
 
-[node name="AcousticEmitter" parent="." instance=ExtResource("4_s2mmi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.2471, 7.90073, -77.8293)
-
 [node name="FreeLookCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5705, 7.00043, -115.987)
 script = ExtResource("4_jk1uq")
+sensitivity = 0.732
 metadata/_custom_type_script = ExtResource("4_jk1uq")
+
+[node name="AcousticEmitter" parent="." instance=ExtResource("8_jd6ut")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.6823, 6.49992, -13.794)
+
+[node name="buf" parent="." instance=ExtResource("8_yem7u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.1634, 5.86548, -93.2521)
+export_path = "IMP_091"

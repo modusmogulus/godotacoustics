@@ -72,6 +72,9 @@ func stop_simulation():
 	for pf in pressurefields:
 		pf.set_simulating(false)
 		pf.queue_free()
+	for ac_lis in ac_listeners:
+		ac_lis.stop_rec()
+		
 func set_sim_duration(duration: float):
 	sim_timer.wait_time = duration
 	
@@ -110,6 +113,10 @@ func unregister_listener(lis):
 func unregister_acoustic_emitter(ac_em):
 	emitters.erase(ac_em)
 	#print(str(emitters))
+
+func play_ir():
+	for ac_lis in ac_listeners:
+		ac_lis.play_recorded()
 
 func _ready() -> void:
 	start_simulation()

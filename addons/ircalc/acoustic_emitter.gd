@@ -2,6 +2,9 @@
 extends Node3D
 var pfield = preload("res://addons/ircalc/pressure_field.tscn")
 
+@export
+var dB_SPL: float
+
 func _enter_tree() -> void:
 	IRCalcGlobalScene.register_acoustic_emitter(self)
 
@@ -32,7 +35,7 @@ func create_pfields(count: int):
 			if result.size() < 1: 
 				#p.global_position = global_position+(p.global_position-global_position)
 				p.queue_free()
-			
+		p.visualizer.set_surface_override_material(0, p.visualizer.get_surface_override_material(0).duplicate())
 		#p.global_position = Vector3(cos(i), sin(i), cos(i)*PI)
 func _exit_tree() -> void:
 	IRCalcGlobalScene.unregister_acoustic_emitter(self)
