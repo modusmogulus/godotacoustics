@@ -89,8 +89,8 @@ func construct_signal(ar: PackedFloat32Array) -> PackedFloat32Array:
 			w = 0
 			for j in range(last_non_zero_index, current_index, 1):
 				w += 1
-				var percentage: float = w/steps_between_them #in decimal 0-1
-				ar[j] = lerpf(ar[last_non_zero_index], ar[current_index], percentage)
+				var percentage: float = steps_between_them/w #in decimal 0-1
+				ar[j] = lerpf(ar[last_non_zero_index], ar[current_index], 1/percentage)
 	return ar
 	
 func play_recorded():

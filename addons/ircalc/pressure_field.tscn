@@ -87,7 +87,7 @@ shader_parameter/metalness = 0.447
 shader_parameter/color = Color(1, 1, 1, 0)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2j0su"]
-radius = 19.649
+radius = 15.263
 
 [node name="PressureField" type="StaticBody3D" node_paths=PackedStringArray("visualizer", "pressurearea")]
 process_mode = 3
