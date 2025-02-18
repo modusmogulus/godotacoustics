@@ -204,5 +204,5 @@ ignore_time_scale = true
 [connection signal="toggled" from="dock_node/OptimizeCheckBox" to="dock_node" method="_on_optimize_check_box_toggled"]
 [connection signal="pressed" from="dock_node/ButtonStartSim2" to="dock_node" method="_on_button_start_sim_pressed"]
 [connection signal="pressed" from="dock_node/ButtonStopSim" to="dock_node" method="_on_button_stop_sim_pressed"]
-[connection signal="pressed" from="dock_node/ButtonPlayIR" to="dock_node" method="_on_button_stop_sim_pressed"]
 [connection signal="pressed" from="dock_node/ButtonPlayIR" to="dock_node" method="_on_button_play_ir_pressed"]
+[connection signal="pressed" from="dock_node/ButtonPlayIR" to="dock_node" method="_on_button_stop_sim_pressed"]

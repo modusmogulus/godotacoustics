@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://doknpunctbhsu"]
+
+[ext_resource type="Script" uid="uid://d2tfwr4ndnpm" path="res://addons/ircalc/acoustic_emitter.gd" id="1_o16b4"]
+
+[node name="AcousticEmitter" type="Node3D"]
+top_level = true
+script = ExtResource("1_o16b4")

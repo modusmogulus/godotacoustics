@@ -11,6 +11,7 @@ var soundspeed: float = 343.0 #m/s
 var emitter_count = 16
 var optimize_wave: bool = false
 var time_scale = 1.0
+var runtime_gizmo: Gizmo3D
 
 func user_req_prepare():
 	for ac_em in emitters:
@@ -119,4 +120,8 @@ func play_ir():
 		ac_lis.play_recorded()
 
 func _ready() -> void:
-	start_simulation()
+	runtime_gizmo = Gizmo3D.new()
+	#get_tree()
+	$Gizmos.add_child(runtime_gizmo)
+	#runtime_gizmo = Gizmo3D.new()
+	#start_simulation()

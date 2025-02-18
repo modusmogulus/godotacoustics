@@ -12,6 +12,8 @@ var dB_SPL: float = 1.0
 @export
 var visualizer: MeshInstance3D
 @export var pressurearea: Area3D
+var reflection_history: int = 0
+var material
 # =================== The laws for this scene ========
 #    
 #    (1)
@@ -37,8 +39,8 @@ func set_simulating(value: bool):
 	timescale = IRCalcGlobalScene.time_scale
 	soften_diffuse = IRCalcGlobalScene.soften_diffuse*IRCalcGlobalScene.time_scale
 	soundspeed = IRCalcGlobalScene.soundspeed
-	
-	
+	material = visualizer.get_surface_override_material(0)
+	$GPUParticles3D.speed_scale = timescale
 func _enter_tree() -> void:
 	IRCalcGlobalScene.register_pressure_field(self)
 	
@@ -53,17 +55,18 @@ func _physics_process(delta: float) -> void:
 	
 	if simu == false: return
 
-	pressure *= 0.9
+	pressure -= pressure*0.001*timescale
 	#dB_SPL = log(pressure) / log(10)*10 #Godot logarithm is NOT base 10 by default. This fixes it
 	#But the real question is... WHAT THE FUCK IS A LOGARITHM?????
 	#ALL MATH CLASSES I TOOK USES FUCKING DIFFERENT BASES OR NUMBERS OF ARGUMENTS???
 	
 	pressurearea.set_meta("pressure", pressure)
 	pressurearea.set_meta("dB_SPL", dB_SPL)
-	var material = visualizer.get_surface_override_material(0)
-	#var col = Color(Color.from_hsv(1-0.7*pressure, 1.0, 1.0, 1.0))
+	var col2 = Color(Color.from_hsv(1-0.7*pressure, 1.0, 1.0, 1.0))
+	
+	#$Soundfield/FogVolume.material.albedo = col2
 	var col = Color.WHITE
-	col.a = pressure
+	col.a = smoothstep(0.0, 0.01, pressure*0.5)
 	material.set_shader_parameter("color", col)
 	visualizer.set_surface_override_material(0, material)
 		
@@ -76,7 +79,8 @@ func _physics_process(delta: float) -> void:
 	for area in $Forcefield.get_overlapping_areas():
 		if area != $Forcefield && area:
 			if absf(velocity.dot(area.get_parent().velocity)) < 0.5 or velocity.length() < 1.0:
-				velocity += (global_position - area.global_position) * (1-velocity.dot(area.get_parent().velocity))*50
+				velocity += (global_position - area.global_position) * area.get_parent().velocity
+				#velocity += (global_position - area.global_position) * (1-velocity.dot(area.get_parent().velocity))*500
 			#velocity += velocity.reflect((velocity - area.get_parent().velocity).normalized())*0.1
 			
 			#area.get_parent().velocity -= velocity
@@ -92,8 +96,15 @@ func _physics_process(delta: float) -> void:
 	var bodies = move_and_collide(velocity*1/60)
 	
 	if bodies:
-		pressure *= 0.2
-		$Soundfield.visible = true
+		if reflection_history > 512: queue_free()
+		pressure -= pressure*0.05*timescale
+		pressure = -pressure
+		reflection_history += 1
+		#$GPUParticles3D.emitting = true
+		#$FogVolume.visible = true
+		col = Color.WHITE
+		material.set_shader_parameter("metalness", 0.0)
+		#$Soundfield.visible = true
 		
 		velocity = 0.8*velocity + bodies.get_normal()*soundspeed* timescale
 		#$Soundfield.scale = $Soundfield.scale * 0.9

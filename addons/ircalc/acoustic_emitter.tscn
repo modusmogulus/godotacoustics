@@ -1,7 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk8tkciiinhcn"]
+[gd_scene load_steps=6 format=3 uid="uid://bk8tkciiinhcn"]
 
 [ext_resource type="Script" uid="uid://d2tfwr4ndnpm" path="res://addons/ircalc/acoustic_emitter.gd" id="1_vmfjg"]
+[ext_resource type="Texture2D" uid="uid://b30h0jpq8ba8d" path="res://addons/ircalc/3rdparty/materials/Sound_Recorder_2001.webp" id="2_5aahr"]
 
-[node name="AcousticEmitter" type="Node3D"]
+[sub_resource type="QuadMesh" id="QuadMesh_3uwbb"]
+size = Vector2(5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svand"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("2_5aahr")
+billboard_mode = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5aahr"]
+
+[node name="AcousticEmitter" type="Area3D"]
 top_level = true
 script = ExtResource("1_vmfjg")
+
+[node name="Billboard" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_3uwbb")
+surface_material_override/0 = SubResource("StandardMaterial3D_svand")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5aahr")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

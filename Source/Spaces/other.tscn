@@ -1031,8 +1031,12 @@ sensitivity = 0.732
 metadata/_custom_type_script = ExtResource("4_jk1uq")
 
 [node name="AcousticEmitter" parent="." instance=ExtResource("8_jd6ut")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.6823, 6.49992, -13.794)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.974, 8.20322, -53.692)
 
 [node name="buf" parent="." instance=ExtResource("8_yem7u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.1634, 5.86548, -93.2521)
-export_path = "IMP_091"
+transform = Transform3D(0.115995, 0, 0.99325, 0, 1, 0, -0.99325, 0, 0.115995, -149.083, 8.36341, -56.0013)
+export_path = "IMP_R"
+
+[node name="buf2" parent="." instance=ExtResource("8_yem7u")]
+transform = Transform3D(0.115995, 0, 0.99325, 0, 1, 0, -0.99325, 0, 0.115995, -149.636, 8.36341, -53.913)
+export_path = "IMP_R"

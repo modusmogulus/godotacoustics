@@ -13,6 +13,7 @@ width = 6
 height = 6
 fill = 1
 fill_from = Vector2(0.51, 0.5)
+fill_to = Vector2(0.863354, 0.161491)
 
 [resource]
 render_priority = 0

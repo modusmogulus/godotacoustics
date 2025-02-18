@@ -1,0 +1,60 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="GodotAcoustics"
+run/main_scene="uid://dq5w646ihx40u"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/show_image=false
+boot_splash/use_filter=false
+config/icon="res://icon.svg"
+
+[audio]
+
+driver/driver="ASIO"
+driver/output_latency=100
+
+[autoload]
+
+IRCalcGlobalScene="*res://addons/ircalc/ircalc_global.tscn"
+
+[dotnet]
+
+project/assembly_name="GodotAcoustics"
+
+[editor]
+
+movie_writer/mjpeg_quality=0.09
+movie_writer/movie_file="C:/Users/Miranda/Desktop/Ohjelmointi/godotacoustics/ExportedVideos/movie.avi"
+movie_writer/disable_vsync=true
+movie_writer/fps=24
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ircalc/plugin.cfg")
+
+[global_group]
+
+Acoustics="Group for all acoustics related stuff"
+
+[physics]
+
+3d/run_on_separate_thread=true
+common/max_physics_steps_per_frame=1
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/light_projectors/filter=0
