@@ -36,3 +36,24 @@ func _on_optimize_check_box_toggled(toggled_on: bool) -> void:
 
 func _on_button_play_ir_pressed() -> void:
 	IRCalcGlobalScene.play_ir()
+
+func _ready():
+	get_viewport().files_dropped.connect(on_files_dropped)
+
+func on_files_dropped(files):
+	for file in files:
+		if file.get_extension() == "gltf":
+			var gltf_document_load = GLTFDocument.new()
+			var gltf_state_load = GLTFState.new()
+			var error = gltf_document_load.append_from_file(file, gltf_state_load)
+			if error == OK:
+				var gltf_scene_root_node = gltf_document_load.generate_scene(gltf_state_load)
+				add_child(gltf_scene_root_node)
+				print("SUCCESFULLY ADDED 3D MODEL")
+			else:
+				print("ERROR! COULD NOT IMPORT GLTF, SORRY...")
+		elif file.get_extension() == "glb":
+			$ErrorGLB.show()
+			$ErrorGLB/sfx.play()
+func _on_button_import_3d_pressed() -> void:
+	pass

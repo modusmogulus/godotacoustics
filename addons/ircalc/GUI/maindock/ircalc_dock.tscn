@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://6cg2bv5relm0"]
+[gd_scene load_steps=8 format=3 uid="uid://6cg2bv5relm0"]
 
 [ext_resource type="Script" uid="uid://cyarnuhb5fapj" path="res://addons/ircalc/GUI/maindock/dock_node.gd" id="1_cw0en"]
 [ext_resource type="Theme" uid="uid://6tfn478a17a7" path="res://addons/ircalc/GUI/ircalc_theme.tres" id="2_x7ui4"]
 [ext_resource type="FontFile" uid="uid://2kgenocntcle" path="res://addons/ircalc/GUI/fonts/Good Old DOS Smooth.ttf" id="3_3fgy7"]
+[ext_resource type="AudioStream" uid="uid://d1auni2obppm1" path="res://addons/ircalc/audio/alert-horrible.mp3" id="4_cw0en"]
 
 [sub_resource type="FontVariation" id="FontVariation_s8bnt"]
 base_font = ExtResource("3_3fgy7")
@@ -174,7 +175,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7ui4")
 text = "Stop auralization"
 
-[node name="ButtonPlayIR" type="Button" parent="dock_node"]
+[node name="ButtonSaveIR" type="Button" parent="dock_node"]
 layout_mode = 0
 offset_top = 473.0
 offset_right = 208.0
@@ -183,7 +184,41 @@ theme = ExtResource("2_x7ui4")
 theme_type_variation = &"Regular"
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7ui4")
-text = "Play impulse response"
+text = "Save impulse response"
+
+[node name="ErrorGLB" type="PopupPanel" parent="dock_node"]
+title = "Please do not import wrong format."
+initial_position = 2
+size = Vector2i(445, 135)
+visible = true
+borderless = false
+
+[node name="Label" type="Label" parent="dock_node/ErrorGLB"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 441.0
+offset_bottom = 131.0
+text = "Received a glb file instead of glTF☠
+Please convert your file to glTF.
+
+They are the same file format, however, glb:s are packed
+in a way not supported by this program yet."
+
+[node name="sfx" type="AudioStreamPlayer" parent="dock_node/ErrorGLB"]
+stream = ExtResource("4_cw0en")
+
+[node name="ButtonImport3D" type="Button" parent="dock_node"]
+layout_mode = 0
+offset_top = 524.0
+offset_right = 208.0
+offset_bottom = 566.0
+theme = ExtResource("2_x7ui4")
+theme_type_variation = &"Regular"
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_x7ui4")
+disabled = true
+text = "Import 3D model
+(drag and drop)"
 
 [node name="StateLabel" type="Label" parent="dock_node"]
 layout_mode = 2
@@ -204,5 +239,6 @@ ignore_time_scale = true
 [connection signal="toggled" from="dock_node/OptimizeCheckBox" to="dock_node" method="_on_optimize_check_box_toggled"]
 [connection signal="pressed" from="dock_node/ButtonStartSim2" to="dock_node" method="_on_button_start_sim_pressed"]
 [connection signal="pressed" from="dock_node/ButtonStopSim" to="dock_node" method="_on_button_stop_sim_pressed"]
-[connection signal="pressed" from="dock_node/ButtonPlayIR" to="dock_node" method="_on_button_play_ir_pressed"]
-[connection signal="pressed" from="dock_node/ButtonPlayIR" to="dock_node" method="_on_button_stop_sim_pressed"]
+[connection signal="pressed" from="dock_node/ButtonSaveIR" to="dock_node" method="_on_button_play_ir_pressed"]
+[connection signal="pressed" from="dock_node/ButtonSaveIR" to="dock_node" method="_on_button_stop_sim_pressed"]
+[connection signal="pressed" from="dock_node/ButtonImport3D" to="dock_node" method="_on_button_import_3d_pressed"]

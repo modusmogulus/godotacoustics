@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://dxt6mwqej3cs"]
+[gd_scene load_steps=62 format=4 uid="uid://dxt6mwqej3cs"]
 
 [ext_resource type="Shader" uid="uid://bsp0o17a4ht8a" path="res://addons/ircalc/3rdparty/materials/matcap_normal_tripla.gdshader" id="1_4li3a"]
 [ext_resource type="Material" uid="uid://bqa5iusf2vitp" path="res://addons/ircalc/3rdparty/materials/MAT_def.tres" id="1_jk1uq"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://blqgxo2kjk7ap" path="res://addons/ircalc/3rdparty/materials/beveler4_normals.png" id="3_4li3a"]
 [ext_resource type="PackedScene" uid="uid://6cg2bv5relm0" path="res://addons/ircalc/GUI/maindock/ircalc_dock.tscn" id="3_dihug"]
 [ext_resource type="Script" uid="uid://4q6ldkg1fp0f" path="res://addons/ircalc/test/debug_freecam_by_ninjat.gd" id="4_jk1uq"]
-[ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="8_jd6ut"]
-[ext_resource type="PackedScene" uid="uid://dghemc2qe87ed" path="res://addons/ircalc/acoustic_listener.tscn" id="8_yem7u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l66t0"]
 render_priority = 0
@@ -1029,14 +1027,3 @@ offset_bottom = 32.0
 script = ExtResource("4_jk1uq")
 sensitivity = 0.732
 metadata/_custom_type_script = ExtResource("4_jk1uq")
-
-[node name="AcousticEmitter" parent="." instance=ExtResource("8_jd6ut")]
-transform = Transform3D(1, 0, 0, 0, 0.055, 0, 0, 0, 1, -30.1959, 5.0492, 6.31511)
-
-[node name="buf" parent="." instance=ExtResource("8_yem7u")]
-transform = Transform3D(0.115995, 0, 0.99325, 0, 1, 0, -0.99325, 0, 0.115995, -42.7363, 8.36341, -155.036)
-export_path = "IMP_R"
-
-[node name="buf2" parent="." instance=ExtResource("8_yem7u")]
-transform = Transform3D(0.115995, 0, 0.99325, 0, 1, 0, -0.99325, 0, 0.115995, -43.2888, 8.36341, -152.948)
-export_path = "IMP_R"

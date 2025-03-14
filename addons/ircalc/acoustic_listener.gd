@@ -70,6 +70,17 @@ func array_to_wav(ar: PackedByteArray) -> PackedByteArray:
 	#		57, 41, 56, 45, 66, 6D, 74]
 	
 	return data
+
+func fix_k(length: int, firstValue: float, lastValue: float, index: int) -> float:
+	#solved by lerppa
+	var a_or_b: float
+	var k: float
+	if firstValue > 0:
+		a_or_b = firstValue
+	else:
+		a_or_b = 0
+	k = ((abs(lastValue - firstValue) / length) * index + a_or_b)
+	return k
 	
 func construct_signal(ar: PackedFloat32Array) -> PackedFloat32Array:
 	
@@ -78,44 +89,86 @@ func construct_signal(ar: PackedFloat32Array) -> PackedFloat32Array:
 	var current_index: int = 0
 	var last_non_zero_index: int = 0
 	var steps_between_them: int = 0
-	var w: int = 0
+	var w: float = 0
 	
 	for i in ar.size()-1:
-		if ar[i] != 0:
-			last_non_zero_index = current_index
-			p2 = ar[i]
-			current_index = i
-			steps_between_them = current_index - last_non_zero_index
-			w = 0
-			for j in range(last_non_zero_index, current_index, 1):
-				w += 1
-				var percentage: float = steps_between_them/w #in decimal 0-1
-				ar[j] = lerpf(ar[last_non_zero_index], ar[current_index], 1/percentage)
+		last_non_zero_index = current_index
+		p2 = ar[i]
+		current_index = i
+		steps_between_them = current_index - last_non_zero_index
+		ar[i] = fix_k(steps_between_them, last_non_zero_index, current_index, i)
 	return ar
 	
-func play_recorded():
-	print("Play requested")
+
+func calculate(length: int, firstValue: float, lastValue: float, index: int) -> float:
+	if (absf(lastValue - firstValue) / length) * index + firstValue> 0:
+		return firstValue 
+	else:
+		return 0
 	
-	play(0.0)
-	#fill_buffer(abuf1)
-	recording = false
-	#var pressure_16bit_l: PackedByteArray = abuf1.to_byte_array()
-	randomize()
-	var file = FileAccess.open("res://ExportedAudio/" + export_path + str(randi_range(-4096, 4096)),FileAccess.WRITE_READ)
-	#for b in abuf1.size():
-		#abuf1[b] = sinc_interpolate(abuf1, b, 10)
-	#file.store_buffer(abuf1.to_byte_array())
-	abuf1 = construct_signal(abuf1)
-	for ar in abuf1:
-		file.store_float(ar)
-	#file.store_buffer(construct_signal(abuf1).to_byte_array())
+
+func lerppaLerp(arr1: PackedFloat32Array) -> float:
+	var intervalStart: float = arr1[0]
+	var intervalEnd: float = 0
+	var intervalLength: int = 0
+	var returnValue := 0
+	
+	for value in arr1:
+		intervalLength += 1
+		if (value == 0 || intervalLength < 2): continue
+		
+		intervalEnd = value
+		
+		for indexValue in intervalLength:
+			returnValue = calculate(intervalLength - 1, intervalStart, intervalEnd, indexValue)
+			
+		intervalStart = intervalEnd
+		intervalLength = 0
+	return returnValue
+	
+func play_recorded():
+	var data_size: int = abuf1.size() * 4  # 4 bytes per float (32-bit)
+	var sample_rate: int = 44100  # Standard CD-quality sample rate
+	var num_channels: int = 1     # Mono
+	var byte_rate: int = sample_rate * num_channels * 4
+	var block_align: int = num_channels * 4
+	var bits_per_sample: int = 32
+
+	var file_path := "res://ExportedAudio/%s%d.wav" % [export_path, randi_range(-4096, 4096)]
+	
+	var file := FileAccess.open(file_path, FileAccess.WRITE)
+	if not file:
+		push_error("Failed to save WAV file: %s" % FileAccess.get_open_error())
+		return
+	
+	# Write WAV header
+	# RIFF chunk
+	file.store_string("RIFF")                     # Chunk ID
+	file.store_32(36 + data_size)                 # Chunk size
+	file.store_string("WAVE")                     # Format
+
+	# fmt subchunk
+	file.store_string("fmt ")                     # Subchunk ID
+	file.store_32(16)                             # Subchunk size (16 for PCM)
+	file.store_16(3)                              # Audio format (3 = IEEE float)
+	file.store_16(num_channels)                   # Num channels
+	file.store_32(sample_rate)                    # Sample rate
+	file.store_32(byte_rate)                      # Byte rate
+	file.store_16(block_align)                    # Block align
+	file.store_16(bits_per_sample)                # Bits per sample
+
+	# data subchunk
+	file.store_string("data")                     # Subchunk ID
+	file.store_32(data_size)                      # Data size
+
+	# Write audio data
+	for sample in abuf1:
+		file.store_float(sample)
+		#file.store_float(lerppaLerp(abuf1))
+		
 	file.close()
 	abuf1.clear()
-	#wavfile.format = AudioStreamWAV.FORMAT_8_BITS
-	#wavfile = wavfile.format()
-	#var wavfile = AudioStreamWAV.new()
-	#wavfile.load_from_buffer(array_to_wav(pressure_16bit_l))
-	#wavfile.save_to_wav("usr://IMPULSSI01")
+	
 func _process(delta: float) -> void:
 	#delta_time_in_samples = floor((bitrate * (0.00167*delta)) * IRCalcGlobalScene.time_scale)
 	delta_time_in_samples = 60*IRCalcGlobalScene.time_scale

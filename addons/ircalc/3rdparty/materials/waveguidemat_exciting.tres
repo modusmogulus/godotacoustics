@@ -1,13 +1,11 @@
-[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://cmeftlhjjekun"]
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://cmeftlhjjekun"]
 
 [ext_resource type="Shader" uid="uid://k867t2k1ddfa" path="res://addons/ircalc/3rdparty/shaders/matcap_basic_add.gdshader" id="1_46kle"]
-[ext_resource type="Texture2D" uid="uid://b628roxq4nlqq" path="res://addons/ircalc/3rdparty/materials/explo2.png" id="2_46kle"]
 [ext_resource type="Shader" uid="uid://yc53rgld7ea" path="res://addons/ircalc/3rdparty/shaders/distort.gdshader" id="3_31okt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xoq2k"]
 render_priority = 127
 shader = ExtResource("1_46kle")
-shader_parameter/matcap = ExtResource("2_46kle")
 shader_parameter/metalness = 1.0
 shader_parameter/color = Color(1, 1, 1, 1)
 
