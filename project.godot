@@ -13,6 +13,7 @@ config_version=5
 config/name="GodotAcoustics"
 run/main_scene="uid://dq5w646ihx40u"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0.0807833, 0.0807833, 0.0807833, 1)
 boot_splash/show_image=false
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
@@ -39,11 +40,22 @@ movie_writer/fps=24
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ircalc/plugin.cfg")
+enabled=PackedStringArray("res://addons/Gizmo3DScript/plugin.cfg", "res://addons/ircalc/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "blue",
+"res://addons/ircalc/": "green"
+}
 
 [global_group]
 
 Acoustics="Group for all acoustics related stuff"
+
+[gui]
+
+theme/default_font_antialiasing=0
 
 [physics]
 

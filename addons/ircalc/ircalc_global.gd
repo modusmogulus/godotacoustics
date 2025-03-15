@@ -54,6 +54,10 @@ func update_waveguides():
 		if ar_pfpos.size() > 0:
 			wvg.add_verts(ar_pfpos, ar_pfnm)
 
+func broadcast_inbetween_calculation():
+	for lis in ac_listeners:
+		lis.make_inbetweens()
+
 func start_simulation():
 	
 	PhysicsServer3D.set_active(true)

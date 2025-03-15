@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	
 	if simu == false: return
 
-	pressure -= pressure*0.001*timescale
+	pressure = pressure*(1-(0.01*timescale))
 	#dB_SPL = log(pressure) / log(10)*10 #Godot logarithm is NOT base 10 by default. This fixes it
 	#But the real question is... WHAT THE FUCK IS A LOGARITHM?????
 	#ALL MATH CLASSES I TOOK USES FUCKING DIFFERENT BASES OR NUMBERS OF ARGUMENTS???
@@ -97,8 +97,13 @@ func _physics_process(delta: float) -> void:
 	
 	if bodies:
 		if reflection_history > 512: queue_free()
-		pressure -= pressure*0.05*timescale
-		pressure = -pressure
+		pressure *= 1-(pressure*0.01*timescale)
+		
+		if bodies.has_meta("AcousticMaterial"):
+			var acmat: AcousticMaterial = bodies.get_meta("AcousticMaterial")
+			pressure *= 1-(pressure*acmat.absorption)
+			
+		pressure = -pressure*randf_range(0.9, 1.0)
 		reflection_history += 1
 		#$GPUParticles3D.emitting = true
 		#$FogVolume.visible = true
@@ -106,7 +111,7 @@ func _physics_process(delta: float) -> void:
 		material.set_shader_parameter("metalness", 0.0)
 		#$Soundfield.visible = true
 		
-		velocity = 0.8*velocity + bodies.get_normal()*soundspeed* timescale
+		velocity = (0.8*velocity + bodies.get_normal()*soundspeed)* timescale
 		#$Soundfield.scale = $Soundfield.scale * 0.9
 		#dup.velocity.x += randf_range(-0.01, 0.01)
 		#dup.velocity.y += randf_range(-0.01, 0.01)

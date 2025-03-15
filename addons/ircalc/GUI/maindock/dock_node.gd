@@ -1,6 +1,6 @@
 @tool
 extends Control
-
+	
 func _on_button_start_sim_pressed() -> void:
 	_start_the_sim()
 
@@ -57,3 +57,15 @@ func on_files_dropped(files):
 			$ErrorGLB/sfx.play()
 func _on_button_import_3d_pressed() -> void:
 	pass
+
+
+
+func _on_button_add_accmat_pressed() -> void:
+	var selectednodes = EditorInterface.get_selection().get_selected_nodes()
+	for node in selectednodes:
+		var acmat = AcousticMaterial.new()
+		node.set_meta("AcousticMaterial", acmat)
+
+
+func _on_button_calc_in_betweens_pressed() -> void:
+	IRCalcGlobalScene.broadcast_inbetween_calculation()
