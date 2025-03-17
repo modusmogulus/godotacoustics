@@ -33,7 +33,7 @@ project/assembly_name="GodotAcoustics"
 
 [editor]
 
-movie_writer/mjpeg_quality=0.09
+movie_writer/mjpeg_quality=0.61
 movie_writer/movie_file="C:/Users/Miranda/Desktop/Ohjelmointi/godotacoustics/ExportedVideos/movie.avi"
 movie_writer/disable_vsync=true
 movie_writer/fps=24

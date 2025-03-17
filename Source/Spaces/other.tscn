@@ -1040,8 +1040,8 @@ sensitivity = 0.732
 metadata/_custom_type_script = "uid://4q6ldkg1fp0f"
 
 [node name="buf" parent="." instance=ExtResource("8_yem7u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7131, 14.3255, -54.0216)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7131, 8.87565, -54.0216)
 
 [node name="AcousticEmitter" parent="." instance=ExtResource("8_jd6ut")]
-transform = Transform3D(-0.977222, 0.127909, 0.169341, 0, 0.797952, -0.602721, -0.21222, -0.588992, -0.779776, -50.3242, 24.9521, -28.4278)
+transform = Transform3D(-0.977222, 0.127909, 0.169341, 0, 0.797952, -0.602721, -0.21222, -0.588992, -0.779776, -44.6026, -8.74994, -12.8194)
 metadata/AcousticMaterial = SubResource("Resource_jd6ut")

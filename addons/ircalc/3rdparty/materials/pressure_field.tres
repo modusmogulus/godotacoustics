@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d4i3xqpw5reo8"]
+
+[ext_resource type="Shader" uid="uid://c53bjxhpmlo3f" path="res://addons/ircalc/3rdparty/shaders/shield.gdshader" id="1_45sxd"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_45sxd")
+shader_parameter/ring_color = Color(1, 1, 1, 1)
+shader_parameter/ring_frequency = 300.0
+shader_parameter/ring_portion = 0.9
+shader_parameter/move_speed = -40.0
+shader_parameter/smooth_edge = false
+shader_parameter/highlight_color = Color(0, 0, 0, 1)
+shader_parameter/highlight_power = 3.0
+shader_parameter/highlight_intensity = 1.0
+shader_parameter/rim_power = 3.0
+shader_parameter/color = Color(1, 1, 1, 1)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=30 format=4 uid="uid://duu4kij01s5vk"]
+[gd_scene load_steps=27 format=4 uid="uid://duu4kij01s5vk"]
 
 [ext_resource type="Script" uid="uid://u5itcuk0qaoj" path="res://addons/ircalc/pressure_field.gd" id="1_c2dkg"]
 [ext_resource type="PackedScene" uid="uid://cx2hr84cedabb" path="res://addons/ircalc/models/wavevis.glb" id="4_qysnn"]
 [ext_resource type="Material" uid="uid://d1igs1nacdnbo" path="res://addons/ircalc/3rdparty/materials/waveguidemat_bland.tres" id="5_ioc0h"]
 [ext_resource type="Texture2D" uid="uid://dtbgwqqgno31v" path="res://addons/ircalc/3rdparty/materials/642464e4b7cd560a40545050325095583a27e54a_2_500x500.jpeg" id="5_qysnn"]
 [ext_resource type="Shader" uid="uid://k867t2k1ddfa" path="res://addons/ircalc/3rdparty/shaders/matcap_basic_add.gdshader" id="6_2j0su"]
+[ext_resource type="Material" uid="uid://d4i3xqpw5reo8" path="res://addons/ircalc/3rdparty/materials/pressure_field.tres" id="6_epifv"]
+[ext_resource type="Shader" uid="uid://dyqmddc6cqf6k" path="res://addons/ircalc/3rdparty/materials/sobel.gdshader" id="6_qysnn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ccqrm"]
 radius = 0.897
@@ -81,52 +83,20 @@ shader = ExtResource("6_2j0su")
 shader_parameter/mask = SubResource("GradientTexture2D_2j0su")
 shader_parameter/matcap = ExtResource("5_qysnn")
 shader_parameter/metalness = 0.0
-shader_parameter/color = Color(1, 1, 1, 0)
-
-[sub_resource type="Gradient" id="Gradient_qysnn"]
-offsets = PackedFloat32Array(0.430451, 0.537594)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_epifv"]
-gradient = SubResource("Gradient_qysnn")
-width = 6
-height = 6
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4fuk7"]
-load_path = "res://.godot/imported/642464e4b7cd560a40545050325095583a27e54a_2_500x500.jpeg-c91ff5854cbe6b2ab23b5acf540713be.s3tc.ctex"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioc0h"]
-render_priority = 0
-shader = ExtResource("6_2j0su")
-shader_parameter/mask = SubResource("GradientTexture2D_epifv")
-shader_parameter/matcap = SubResource("CompressedTexture2D_4fuk7")
-shader_parameter/metalness = 0.0
 shader_parameter/color = Color(1, 1, 1, 1)
 
-[sub_resource type="Gradient" id="Gradient_2j0su"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0.0413534, 0.259398, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioc0h"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4fuk7"]
-gradient = SubResource("Gradient_2j0su")
-width = 6
-height = 6
-fill = 1
-fill_from = Vector2(0.534188, 0.495726)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q6iem"]
-load_path = "res://.godot/imported/642464e4b7cd560a40545050325095583a27e54a_2_500x500.jpeg-c91ff5854cbe6b2ab23b5acf540713be.s3tc.ctex"
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2j0su"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oue0u"]
 render_priority = 0
-shader = ExtResource("6_2j0su")
-shader_parameter/mask = SubResource("GradientTexture2D_4fuk7")
-shader_parameter/matcap = SubResource("CompressedTexture2D_q6iem")
-shader_parameter/metalness = 0.0
-shader_parameter/color = Color(0, 0, 0, 1)
+shader = ExtResource("6_qysnn")
+shader_parameter/highlight_color = Color(0, 0, 0, 1)
+shader_parameter/highlight_power = 10.0
+shader_parameter/highlight_intensity = 1.0
+shader_parameter/rim_power = 10.0
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2j0su"]
 radius = 9.641
@@ -202,12 +172,21 @@ surface_material_override/0 = SubResource("ShaderMaterial_4fuk7")
 
 [node name="Circle3" type="MeshInstance3D" parent="Soundfield"]
 transform = Transform3D(1.345, 0, 0, 0, 1.345, -2.13163e-14, 0, 2.13163e-14, 1.345, 0, -0.206868, -9.04249e-09)
+visible = false
 mesh = SubResource("ArrayMesh_4fuk7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_ioc0h")
 
+[node name="Circle5" type="MeshInstance3D" parent="Soundfield"]
+transform = Transform3D(1.345, 0, 0, 0, 1.345, -2.13163e-14, 0, 2.13163e-14, 1.345, 0, 0, 0)
+material_override = ExtResource("6_epifv")
+mesh = SubResource("ArrayMesh_4fuk7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_2j0su")
+
 [node name="Circle4" type="MeshInstance3D" parent="Soundfield"]
 transform = Transform3D(1.345, 0, 0, 0, 1.345, -2.13163e-14, 0, 2.13163e-14, 1.345, 0, -0.151605, -6.62687e-09)
+visible = false
 mesh = SubResource("ArrayMesh_4fuk7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_oue0u")
