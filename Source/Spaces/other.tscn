@@ -1,6 +1,6 @@
 [gd_scene load_steps=65 format=4 uid="uid://dxt6mwqej3cs"]
 
-[ext_resource type="Texture2D" uid="uid://ihy8tpuf6xpg" path="res://addons/ircalc/3rdparty/materials/BRICK5.JPG" id="1_4li3a"]
+[ext_resource type="Texture2D" uid="uid://djyacogrje4by" path="res://addons/ircalc/3rdparty/materials/d47d7bb8fedd1bec9283ef1a571a4d6f.jpg" id="1_4li3a"]
 [ext_resource type="Material" uid="uid://bqa5iusf2vitp" path="res://addons/ircalc/3rdparty/materials/MAT_def.tres" id="1_jk1uq"]
 [ext_resource type="PackedScene" uid="uid://6cg2bv5relm0" path="res://addons/ircalc/GUI/maindock/ircalc_dock.tscn" id="3_dihug"]
 [ext_resource type="Script" uid="uid://4q6ldkg1fp0f" path="res://addons/ircalc/test/debug_freecam_by_ninjat.gd" id="4_jk1uq"]
@@ -9,15 +9,15 @@
 [ext_resource type="Script" uid="uid://d26pmrws38n7i" path="res://addons/ircalc/resAcousticMaterial.gd" id="9_jd6ut"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yem7u"]
-shading_mode = 0
+shading_mode = 2
 albedo_texture = ExtResource("1_4li3a")
 uv1_scale = Vector3(0.15, 0.15, 0.15)
 uv1_triplanar = true
 
 [sub_resource type="Gradient" id="Gradient_jk1uq"]
 interpolation_color_space = 1
-offsets = PackedFloat32Array(0, 0.621212)
-colors = PackedColorArray(1, 1, 1, 1, 0.000115418, 0.297757, 0.876188, 1)
+offsets = PackedFloat32Array(0.435606, 0.621212)
+colors = PackedColorArray(0.552473, 0.730725, 0.849981, 1, 0.834169, 0.505623, 0.873313, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_i0yh6"]
 gradient = SubResource("Gradient_jk1uq")
@@ -1043,5 +1043,5 @@ metadata/_custom_type_script = "uid://4q6ldkg1fp0f"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7131, 8.87565, -54.0216)
 
 [node name="AcousticEmitter" parent="." instance=ExtResource("8_jd6ut")]
-transform = Transform3D(-0.977222, 0.127909, 0.169341, 0, 0.797952, -0.602721, -0.21222, -0.588992, -0.779776, -44.6026, -8.74994, -12.8194)
+transform = Transform3D(-0.977222, 0.127909, 0.169341, 0, 0.797952, -0.602721, -0.21222, -0.588992, -0.779776, -54.9883, 60.2704, 105.703)
 metadata/AcousticMaterial = SubResource("Resource_jd6ut")

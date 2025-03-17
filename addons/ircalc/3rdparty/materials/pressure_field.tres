@@ -6,12 +6,12 @@
 render_priority = 0
 shader = ExtResource("1_45sxd")
 shader_parameter/ring_color = Color(1, 1, 1, 1)
-shader_parameter/ring_frequency = 300.0
-shader_parameter/ring_portion = 0.9
+shader_parameter/ring_frequency = 100.0
+shader_parameter/ring_portion = 0.3
 shader_parameter/move_speed = -40.0
 shader_parameter/smooth_edge = false
-shader_parameter/highlight_color = Color(0, 0, 0, 1)
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
 shader_parameter/highlight_power = 3.0
 shader_parameter/highlight_intensity = 1.0
 shader_parameter/rim_power = 3.0
-shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.369895, 0.417255, 0.598116, 1)
