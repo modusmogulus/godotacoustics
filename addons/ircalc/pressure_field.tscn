@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://duu4kij01s5vk"]
+[gd_scene load_steps=30 format=4 uid="uid://duu4kij01s5vk"]
 
 [ext_resource type="Script" uid="uid://u5itcuk0qaoj" path="res://addons/ircalc/pressure_field.gd" id="1_c2dkg"]
 [ext_resource type="PackedScene" uid="uid://cx2hr84cedabb" path="res://addons/ircalc/models/wavevis.glb" id="4_qysnn"]
@@ -10,7 +10,7 @@
 radius = 0.897
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c2dkg"]
-radius = 20.808
+radius = 5.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4fuk7"]
 emission_shape = 3
@@ -29,9 +29,6 @@ turbulence_noise_speed = Vector3(0.225, 0.115, 0.235)
 [sub_resource type="BoxMesh" id="BoxMesh_2j0su"]
 material = SubResource("StandardMaterial3D_ioc0h")
 size = Vector3(0.003, 0.003, 0.003)
-
-[sub_resource type="FogMaterial" id="FogMaterial_2j0su"]
-density = 0.6955
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j0su"]
 
@@ -86,8 +83,73 @@ shader_parameter/matcap = ExtResource("5_qysnn")
 shader_parameter/metalness = 0.0
 shader_parameter/color = Color(1, 1, 1, 0)
 
+[sub_resource type="Gradient" id="Gradient_qysnn"]
+offsets = PackedFloat32Array(0.430451, 0.537594)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_epifv"]
+gradient = SubResource("Gradient_qysnn")
+width = 6
+height = 6
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4fuk7"]
+load_path = "res://.godot/imported/642464e4b7cd560a40545050325095583a27e54a_2_500x500.jpeg-c91ff5854cbe6b2ab23b5acf540713be.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioc0h"]
+render_priority = 0
+shader = ExtResource("6_2j0su")
+shader_parameter/mask = SubResource("GradientTexture2D_epifv")
+shader_parameter/matcap = SubResource("CompressedTexture2D_4fuk7")
+shader_parameter/metalness = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_2j0su"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0413534, 0.259398, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4fuk7"]
+gradient = SubResource("Gradient_2j0su")
+width = 6
+height = 6
+fill = 1
+fill_from = Vector2(0.534188, 0.495726)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q6iem"]
+load_path = "res://.godot/imported/642464e4b7cd560a40545050325095583a27e54a_2_500x500.jpeg-c91ff5854cbe6b2ab23b5acf540713be.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oue0u"]
+render_priority = 0
+shader = ExtResource("6_2j0su")
+shader_parameter/mask = SubResource("GradientTexture2D_4fuk7")
+shader_parameter/matcap = SubResource("CompressedTexture2D_q6iem")
+shader_parameter/metalness = 0.0
+shader_parameter/color = Color(0, 0, 0, 1)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_2j0su"]
-radius = 9.695
+radius = 9.641
+
+[sub_resource type="QuadMesh" id="QuadMesh_2j0su"]
+size = Vector2(8, 8)
+
+[sub_resource type="Gradient" id="Gradient_ioc0h"]
+offsets = PackedFloat32Array(0.520134, 0.587248, 0.691275)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0.110833, 0.95, 0.568627, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qysnn"]
+gradient = SubResource("Gradient_ioc0h")
+fill = 1
+fill_from = Vector2(0.508547, 0.521368)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epifv"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_qysnn")
+billboard_mode = 1
 
 [node name="PressureField" type="StaticBody3D" node_paths=PackedStringArray("visualizer", "pressurearea")]
 process_mode = 3
@@ -123,23 +185,32 @@ process_material = SubResource("ParticleProcessMaterial_4fuk7")
 draw_pass_1 = SubResource("BoxMesh_2j0su")
 metadata/_edit_group_ = true
 
-[node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, -2.4869e-14, 0, 2.4869e-14, 1, 0.108825, 0.0180664, 1.21511)
-visible = false
-size = Vector3(11.4872, 9.39551, 2.73021)
-material = SubResource("FogMaterial_2j0su")
-
 [node name="Soundfield" parent="." instance=ExtResource("4_qysnn")]
 transform = Transform3D(4.44, 0, 0, 0, -1.94079e-07, 4.44, 0, -4.44, -1.94079e-07, 0.232402, 0, 0.0214216)
 
 [node name="Circle" parent="Soundfield" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, 0, 0.355597, 1.55437e-08)
+visible = false
 surface_material_override/0 = ExtResource("5_ioc0h")
 
 [node name="Circle2" type="MeshInstance3D" parent="Soundfield"]
 transform = Transform3D(1.345, 0, 0, 0, 1.345, -2.13163e-14, 0, 2.13163e-14, 1.345, 0, -0.274587, -1.20026e-08)
+visible = false
 mesh = SubResource("ArrayMesh_4fuk7")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_4fuk7")
+
+[node name="Circle3" type="MeshInstance3D" parent="Soundfield"]
+transform = Transform3D(1.345, 0, 0, 0, 1.345, -2.13163e-14, 0, 2.13163e-14, 1.345, 0, -0.206868, -9.04249e-09)
+mesh = SubResource("ArrayMesh_4fuk7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_ioc0h")
+
+[node name="Circle4" type="MeshInstance3D" parent="Soundfield"]
+transform = Transform3D(1.345, 0, 0, 0, 1.345, -2.13163e-14, 0, 2.13163e-14, 1.345, 0, -0.151605, -6.62687e-09)
+mesh = SubResource("ArrayMesh_4fuk7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_oue0u")
 
 [node name="PressureArea" type="Area3D" parent="Soundfield" groups=["AcPressure", "Acoustics"]]
 transform = Transform3D(0.191755, 0, 0, 0, -8.38186e-09, -0.191755, 0, 0.191755, -8.38186e-09, -0.0445641, 1.79501, 7.84627e-08)
@@ -149,6 +220,12 @@ metadata/pressure = 1.0
 metadata/dB_SPL = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Soundfield/PressureArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.82128e-12, 9.48828)
 shape = SubResource("SphereShape3D_2j0su")
+
+[node name="Billboard" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("QuadMesh_2j0su")
+surface_material_override/0 = SubResource("StandardMaterial3D_epifv")
 
 [editable path="Soundfield"]

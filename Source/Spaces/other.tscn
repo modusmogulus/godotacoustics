@@ -1,26 +1,23 @@
 [gd_scene load_steps=65 format=4 uid="uid://dxt6mwqej3cs"]
 
-[ext_resource type="Shader" uid="uid://bsp0o17a4ht8a" path="res://addons/ircalc/3rdparty/materials/matcap_normal_tripla.gdshader" id="1_4li3a"]
+[ext_resource type="Texture2D" uid="uid://ihy8tpuf6xpg" path="res://addons/ircalc/3rdparty/materials/BRICK5.JPG" id="1_4li3a"]
 [ext_resource type="Material" uid="uid://bqa5iusf2vitp" path="res://addons/ircalc/3rdparty/materials/MAT_def.tres" id="1_jk1uq"]
-[ext_resource type="Texture2D" uid="uid://crpu5y5m2stpw" path="res://addons/ircalc/3rdparty/materials/617586_23304C_1B1E30_4988CF.png" id="2_4li3a"]
-[ext_resource type="Texture2D" uid="uid://blqgxo2kjk7ap" path="res://addons/ircalc/3rdparty/materials/beveler4_normals.png" id="3_4li3a"]
 [ext_resource type="PackedScene" uid="uid://6cg2bv5relm0" path="res://addons/ircalc/GUI/maindock/ircalc_dock.tscn" id="3_dihug"]
 [ext_resource type="Script" uid="uid://4q6ldkg1fp0f" path="res://addons/ircalc/test/debug_freecam_by_ninjat.gd" id="4_jk1uq"]
 [ext_resource type="PackedScene" uid="uid://bk8tkciiinhcn" path="res://addons/ircalc/acoustic_emitter.tscn" id="8_jd6ut"]
 [ext_resource type="PackedScene" uid="uid://dghemc2qe87ed" path="res://addons/ircalc/acoustic_listener.tscn" id="8_yem7u"]
+[ext_resource type="Script" uid="uid://d26pmrws38n7i" path="res://addons/ircalc/resAcousticMaterial.gd" id="9_jd6ut"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l66t0"]
-render_priority = 0
-shader = ExtResource("1_4li3a")
-shader_parameter/matcap = ExtResource("2_4li3a")
-shader_parameter/normal_map = ExtResource("3_4li3a")
-shader_parameter/scale = Vector3(0.085, -0.04, -0.09)
-shader_parameter/offset = Vector3(0, 0, 0)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yem7u"]
+shading_mode = 0
+albedo_texture = ExtResource("1_4li3a")
+uv1_scale = Vector3(0.15, 0.15, 0.15)
+uv1_triplanar = true
 
 [sub_resource type="Gradient" id="Gradient_jk1uq"]
 interpolation_color_space = 1
-offsets = PackedFloat32Array(0.371212, 0.621212)
-colors = PackedColorArray(0.0941176, 0.101961, 0.109804, 1, 0.490196, 0.564706, 0.643137, 1)
+offsets = PackedFloat32Array(0, 0.621212)
+colors = PackedColorArray(1, 1, 1, 1, 0.000115418, 0.297757, 0.876188, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_i0yh6"]
 gradient = SubResource("Gradient_jk1uq")
@@ -37,11 +34,11 @@ radiance_size = 2
 
 [sub_resource type="Environment" id="Environment_y1b1f"]
 background_mode = 2
+background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_jk1uq")
 ambient_light_source = 2
 ambient_light_color = Color(0.332881, 0.332881, 0.332881, 1)
 ambient_light_energy = 2.83
-tonemap_mode = 1
 tonemap_exposure = 1.55
 glow_intensity = 0.86
 glow_bloom = 0.48
@@ -758,13 +755,22 @@ data = PackedVector3Array(0.1439, 0.1439, 0, 0.048, 0.1439, 0, 0.048, 0.11, 0.02
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yem7u"]
 
+[sub_resource type="Resource" id="Resource_jd6ut"]
+script = ExtResource("9_jd6ut")
+absorption = 0.1
+
 [node name="Node3D" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.954, -116.895, -8.55644)
-material_override = SubResource("ShaderMaterial_l66t0")
+material_override = SubResource("StandardMaterial3D_yem7u")
 use_collision = true
 size = Vector3(441.119, 233.79, 421.748)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1871, 108.557, -12.6156)
+operation = 2
+size = Vector3(36.3741, 10, 76.3364)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y1b1f")
@@ -1034,7 +1040,8 @@ sensitivity = 0.732
 metadata/_custom_type_script = "uid://4q6ldkg1fp0f"
 
 [node name="buf" parent="." instance=ExtResource("8_yem7u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.4132, 5.98353, -63.9209)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7131, 14.3255, -54.0216)
 
 [node name="AcousticEmitter" parent="." instance=ExtResource("8_jd6ut")]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, -37.3632, 6.95577, -141.823)
+transform = Transform3D(-0.977222, 0.127909, 0.169341, 0, 0.797952, -0.602721, -0.21222, -0.588992, -0.779776, -50.3242, 24.9521, -28.4278)
+metadata/AcousticMaterial = SubResource("Resource_jd6ut")

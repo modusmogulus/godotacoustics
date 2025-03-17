@@ -85,7 +85,7 @@ func _physics_process(delta: float) -> void:
 			
 			#area.get_parent().velocity -= velocity
 	
-	if get_parent_node_3d().scale.y < 0.5: velocity.y = 0.0
+	#if get_parent_node_3d().scale.y < 0.5: velocity.y = 0.0
 	
 		#velocity = -velocity
 	#velocity = clamp(velocity, Vector3(-1.0, -1.0, -1.0), Vector3(1.0, 1.0, 1.0))
@@ -97,13 +97,13 @@ func _physics_process(delta: float) -> void:
 	
 	if bodies:
 		if reflection_history > 512: queue_free()
-		pressure *= 1-(pressure*0.01*timescale)
+		pressure *= 1-(pressure*0.5*randf_range(0.98, 1.0)*timescale)
 		
 		if bodies.has_meta("AcousticMaterial"):
 			var acmat: AcousticMaterial = bodies.get_meta("AcousticMaterial")
 			pressure *= 1-(pressure*acmat.absorption)
 			
-		pressure = -pressure*randf_range(0.9, 1.0)
+		pressure = -pressure
 		reflection_history += 1
 		#$GPUParticles3D.emitting = true
 		#$FogVolume.visible = true
@@ -111,7 +111,9 @@ func _physics_process(delta: float) -> void:
 		material.set_shader_parameter("metalness", 0.0)
 		#$Soundfield.visible = true
 		
-		velocity = (0.8*velocity + bodies.get_normal()*soundspeed)* timescale
+		#velocity = (velocity * -bodies.get_normal()*soundspeed)* timescale
+		#velocity = -velocity
+		velocity = velocity.bounce(bodies.get_normal())
 		#$Soundfield.scale = $Soundfield.scale * 0.9
 		#dup.velocity.x += randf_range(-0.01, 0.01)
 		#dup.velocity.y += randf_range(-0.01, 0.01)

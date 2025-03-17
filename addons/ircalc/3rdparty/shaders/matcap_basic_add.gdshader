@@ -9,10 +9,14 @@ uniform sampler2D mask : source_color, hint_default_white;
 uniform sampler2D matcap : source_color, hint_default_transparent;
 uniform float metalness : hint_range(0.0,1.0) = 1.0;
 uniform vec4 color : source_color = vec4(1.0);
+//uniform sampler2D screentex : hint_screen_texture;
 
 void fragment() {
 	vec2 matcap_uv = (NORMAL.xy * vec2(0.5, -0.5) + vec2(0.5, 0.5));
+	vec3 tempcol;
 	ALBEDO = color.rgb;
+	tempcol = color.rgb;
 	ALBEDO *= mix(vec3(1.0), texture(matcap, matcap_uv).rgb, metalness);
+	//ALBEDO = texture(screentex, SCREEN_UV).rgb;
 	ALPHA = texture(matcap, matcap_uv).a*color.a*texture(mask, UV).a;
 }

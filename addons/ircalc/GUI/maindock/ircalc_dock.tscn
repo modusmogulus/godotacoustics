@@ -1,16 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://6cg2bv5relm0"]
+[gd_scene load_steps=10 format=3 uid="uid://6cg2bv5relm0"]
 
 [ext_resource type="Script" uid="uid://cyarnuhb5fapj" path="res://addons/ircalc/GUI/maindock/dock_node.gd" id="1_cw0en"]
 [ext_resource type="Theme" uid="uid://6tfn478a17a7" path="res://addons/ircalc/GUI/ircalc_theme.tres" id="2_x7ui4"]
-[ext_resource type="FontFile" uid="uid://2kgenocntcle" path="res://addons/ircalc/GUI/fonts/Good Old DOS Smooth.ttf" id="3_3fgy7"]
+[ext_resource type="FontFile" uid="uid://b64u8kv0fpkon" path="res://addons/ircalc/GUI/fonts/Good Old DOS.ttf" id="3_6b8bl"]
+[ext_resource type="FontFile" uid="uid://b83qt3as16kip" path="res://addons/ircalc/GUI/fonts/lcddot_tr.ttf" id="3_cw0en"]
 [ext_resource type="AudioStream" uid="uid://d1auni2obppm1" path="res://addons/ircalc/audio/alert-horrible.mp3" id="4_cw0en"]
 
+[sub_resource type="Theme" id="Theme_6b8bl"]
+default_font = ExtResource("3_6b8bl")
+default_font_size = 12
+
 [sub_resource type="FontVariation" id="FontVariation_s8bnt"]
-base_font = ExtResource("3_3fgy7")
+base_font = ExtResource("3_cw0en")
 
 [sub_resource type="Theme" id="Theme_cw0en"]
 default_font = SubResource("FontVariation_s8bnt")
-default_font_size = 0
+default_font_size = 32
 
 [sub_resource type="SystemFont" id="SystemFont_x7ui4"]
 font_names = PackedStringArray("Tahoma")
@@ -32,31 +37,40 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_cw0en")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="dock_node"]
-layout_mode = 1
-offset_right = 342.0
-offset_bottom = 219.0
+[node name="Panel" type="Panel" parent="dock_node"]
+modulate = Color(0.808452, 0.941177, 0.967241, 1)
+self_modulate = Color(0.600315, 0.56127, 1, 1)
+layout_mode = 0
+offset_right = 1198.0
+offset_bottom = 3218.0
 
-[node name="Labels" type="VBoxContainer" parent="dock_node/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="dock_node/Panel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 65.0
+offset_right = 352.0
+offset_bottom = 284.0
+
+[node name="Labels" type="VBoxContainer" parent="dock_node/Panel/HBoxContainer"]
 layout_mode = 2
 
-[node name="DurationSpinLabel" type="Label" parent="dock_node/HBoxContainer/Labels"]
+[node name="DurationSpinLabel" type="Label" parent="dock_node/Panel/HBoxContainer/Labels"]
 layout_mode = 2
 text = "Duration    "
 
-[node name="CountLabel" type="Label" parent="dock_node/HBoxContainer/Labels"]
+[node name="CountLabel" type="Label" parent="dock_node/Panel/HBoxContainer/Labels"]
 layout_mode = 2
 text = "Count"
 
-[node name="CountLabel2" type="Label" parent="dock_node/HBoxContainer/Labels"]
+[node name="CountLabel2" type="Label" parent="dock_node/Panel/HBoxContainer/Labels"]
 layout_mode = 2
 text = "Soft diffus."
 
-[node name="Handles" type="VBoxContainer" parent="dock_node/HBoxContainer"]
+[node name="Handles" type="VBoxContainer" parent="dock_node/Panel/HBoxContainer"]
 layout_mode = 2
 
-[node name="DurationSpin" type="SpinBox" parent="dock_node/HBoxContainer/Handles"]
-modulate = Color(0, 0.686275, 0, 1)
+[node name="DurationSpin" type="SpinBox" parent="dock_node/Panel/HBoxContainer/Handles"]
+modulate = Color(0.729412, 0.560784, 1, 1)
 layout_mode = 2
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"LCD"
@@ -64,8 +78,8 @@ step = 0.5
 value = 3.0
 update_on_text_changed = true
 
-[node name="CountSpin" type="SpinBox" parent="dock_node/HBoxContainer/Handles"]
-modulate = Color(0, 0.686275, 0, 1)
+[node name="CountSpin" type="SpinBox" parent="dock_node/Panel/HBoxContainer/Handles"]
+modulate = Color(0.729412, 0.560784, 1, 1)
 layout_mode = 2
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"LCD"
@@ -75,8 +89,8 @@ value = 256.0
 rounded = true
 update_on_text_changed = true
 
-[node name="DiffuseSpin" type="SpinBox" parent="dock_node/HBoxContainer/Handles"]
-modulate = Color(0, 0.686275, 0, 1)
+[node name="DiffuseSpin" type="SpinBox" parent="dock_node/Panel/HBoxContainer/Handles"]
+modulate = Color(0.729412, 0.560784, 1, 1)
 layout_mode = 2
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"LCD"
@@ -85,46 +99,59 @@ step = 0.1
 value = 1.1
 update_on_text_changed = true
 
-[node name="SpeedLabel" type="Label" parent="dock_node"]
-layout_mode = 2
-offset_left = 10.0
-offset_top = 135.0
-offset_right = 96.0
-offset_bottom = 158.0
+[node name="SpeedLabel" type="Label" parent="dock_node/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 200.0
+offset_right = 106.0
+offset_bottom = 223.0
 text = "Speed m/s"
 
-[node name="CountLabel4" type="Label" parent="dock_node"]
-layout_mode = 2
-offset_left = 45.0
-offset_top = 199.0
-offset_right = 131.0
-offset_bottom = 222.0
+[node name="SpeedLabel2" type="Label" parent="dock_node/Panel"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 18.0
+offset_right = 193.0
+offset_bottom = 47.0
+theme = SubResource("Theme_6b8bl")
+text = "Acoustic
+Simulation"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CountLabel4" type="Label" parent="dock_node/Panel"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 259.0
+offset_right = 123.0
+offset_bottom = 282.0
 text = "Optimize"
 
-[node name="TimeScaleLabel" type="Label" parent="dock_node"]
-layout_mode = 2
-offset_left = 7.0
-offset_top = 83.0
-offset_right = 93.0
-offset_bottom = 106.0
+[node name="TimeScaleLabel" type="Label" parent="dock_node/Panel"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 148.0
+offset_right = 103.0
+offset_bottom = 171.0
 text = "Time scale"
 
-[node name="TimeScaleSlider" type="HSlider" parent="dock_node"]
-layout_mode = 2
-offset_left = 11.0
-offset_top = 112.0
-offset_right = 156.0
-offset_bottom = 134.0
+[node name="TimeScaleSlider" type="HSlider" parent="dock_node/Panel"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 177.0
+offset_right = 166.0
+offset_bottom = 199.0
 page = 1.0
 value = 99.0
 
-[node name="SpeedSpin" type="SpinBox" parent="dock_node"]
-modulate = Color(0, 0.686275, 0, 1)
-layout_mode = 2
-offset_left = 11.0
-offset_top = 166.0
-offset_right = 160.0
-offset_bottom = 191.0
+[node name="SpeedSpin" type="SpinBox" parent="dock_node/Panel"]
+modulate = Color(0.728667, 0.56, 1, 1)
+layout_mode = 0
+offset_left = 21.0
+offset_top = 231.0
+offset_right = 170.0
+offset_bottom = 257.0
+mouse_default_cursor_shape = 3
 theme = SubResource("Theme_cw0en")
 theme_type_variation = &"LCD"
 min_value = 0.1
@@ -135,75 +162,81 @@ rounded = true
 allow_greater = true
 update_on_text_changed = true
 
-[node name="ButtonSpawn" type="Button" parent="dock_node" groups=["Acoustics"]]
+[node name="ButtonSpawn" type="Button" parent="dock_node/Panel" groups=["Acoustics"]]
 layout_mode = 0
-offset_top = 236.0
-offset_right = 208.0
-offset_bottom = 278.0
+offset_left = 122.0
+offset_top = 300.0
+offset_right = 219.0
+offset_bottom = 350.0
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"Regular"
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7ui4")
-text = "Spawn pressurefields"
+text = "Spawn 
+waves"
 
-[node name="OptimizeCheckBox" type="CheckBox" parent="dock_node"]
-layout_mode = 2
-offset_left = 19.0
-offset_top = 200.0
-offset_right = 44.0
-offset_bottom = 224.0
-
-[node name="ButtonStartSim2" type="Button" parent="dock_node" groups=["Acoustics"]]
+[node name="OptimizeCheckBox" type="CheckBox" parent="dock_node/Panel"]
 layout_mode = 0
-offset_top = 286.0
-offset_right = 208.0
-offset_bottom = 328.0
+offset_left = 15.0
+offset_top = 260.0
+offset_right = 40.0
+offset_bottom = 284.0
+
+[node name="ButtonStartSim2" type="Button" parent="dock_node/Panel" groups=["Acoustics"]]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 353.0
+offset_right = 219.0
+offset_bottom = 395.0
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"Regular"
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7ui4")
-text = "Start auralization"
+text = "Simulate wave behaviour"
 
-[node name="ButtonStopSim" type="Button" parent="dock_node"]
+[node name="ButtonStopSim" type="Button" parent="dock_node/Panel"]
 layout_mode = 0
-offset_top = 335.0
-offset_right = 208.0
-offset_bottom = 377.0
+offset_left = 10.0
+offset_top = 400.0
+offset_right = 218.0
+offset_bottom = 442.0
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"Regular"
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7ui4")
-text = "Stop auralization"
+text = "Stop simulating"
 
-[node name="ButtonCalcInBetweens" type="Button" parent="dock_node"]
+[node name="ButtonCalcInBetweens" type="Button" parent="dock_node/Panel"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 382.0
-offset_right = 209.0
-offset_bottom = 424.0
+offset_left = 11.0
+offset_top = 493.0
+offset_right = 219.0
+offset_bottom = 535.0
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"Regular"
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7ui4")
 text = "Calculate inbetweens"
 
-[node name="ButtonSaveIR" type="Button" parent="dock_node"]
+[node name="ButtonSaveIR" type="Button" parent="dock_node/Panel"]
 layout_mode = 0
-offset_top = 429.0
-offset_right = 208.0
-offset_bottom = 471.0
+offset_left = 11.0
+offset_top = 447.0
+offset_right = 219.0
+offset_bottom = 489.0
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"Regular"
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7ui4")
 text = "Save impulse response"
 
-[node name="ButtonAddAccmat" type="Button" parent="dock_node"]
+[node name="ButtonAddAccmat" type="Button" parent="dock_node/Panel"]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 527.0
-offset_right = 205.0
-offset_bottom = 590.0
+offset_left = 10.0
+offset_top = 579.0
+offset_right = 220.0
+offset_bottom = 629.0
+tooltip_text = "(Acoustic material uses metadata)"
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"Regular"
 theme_override_constants/outline_size = 10
@@ -211,14 +244,27 @@ theme_override_fonts/font = SubResource("SystemFont_x7ui4")
 text = "Add acoustic
 material to selected"
 
-[node name="ErrorGLB" type="PopupPanel" parent="dock_node"]
+[node name="ButtonRaytrace" type="Button" parent="dock_node/Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 299.0
+offset_right = 115.0
+offset_bottom = 349.0
+tooltip_text = "(Acoustic material uses metadata)"
+theme = ExtResource("2_x7ui4")
+theme_type_variation = &"Regular"
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_x7ui4")
+text = "Spawn &
+start rays"
+
+[node name="ErrorGLB" type="PopupPanel" parent="dock_node/Panel"]
 title = "Please do not import wrong format."
 initial_position = 2
 size = Vector2i(445, 135)
-visible = true
 borderless = false
 
-[node name="Label" type="Label" parent="dock_node/ErrorGLB"]
+[node name="Label" type="Label" parent="dock_node/Panel/ErrorGLB"]
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 441.0
@@ -229,43 +275,46 @@ Please convert your file to glTF.
 They are the same file format, however, glb:s are packed
 in a way not supported by this program yet."
 
-[node name="sfx" type="AudioStreamPlayer" parent="dock_node/ErrorGLB"]
+[node name="sfx" type="AudioStreamPlayer" parent="dock_node/Panel/ErrorGLB"]
 stream = ExtResource("4_cw0en")
 
-[node name="ButtonImport3D" type="Button" parent="dock_node"]
+[node name="ButtonImport3D" type="Button" parent="dock_node/Panel"]
 layout_mode = 0
-offset_top = 625.0
-offset_right = 208.0
-offset_bottom = 675.0
+offset_left = 9.0
+offset_top = 540.0
+offset_right = 214.0
+offset_bottom = 569.0
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"Regular"
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7ui4")
 disabled = true
-text = "Import 3D model
-(drag and drop)"
+text = "Import 3D model (drag)"
 
-[node name="StateLabel" type="Label" parent="dock_node"]
-layout_mode = 2
-offset_left = 5.0
-offset_top = 527.0
-offset_right = 233.0
-offset_bottom = 544.0
+[node name="StateLabel" type="Label" parent="dock_node/Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 283.0
+offset_right = 241.0
+offset_bottom = 300.0
 theme = ExtResource("2_x7ui4")
+text = "109/167"
 uppercase = true
 
-[node name="Timer" type="Timer" parent="dock_node"]
+[node name="Timer" type="Timer" parent="dock_node/Panel"]
 process_mode = 3
 process_callback = 0
 one_shot = true
 ignore_time_scale = true
 
-[connection signal="pressed" from="dock_node/ButtonSpawn" to="dock_node" method="_on_button_spawn_pressed"]
-[connection signal="toggled" from="dock_node/OptimizeCheckBox" to="dock_node" method="_on_optimize_check_box_toggled"]
-[connection signal="pressed" from="dock_node/ButtonStartSim2" to="dock_node" method="_on_button_start_sim_pressed"]
-[connection signal="pressed" from="dock_node/ButtonStopSim" to="dock_node" method="_on_button_stop_sim_pressed"]
-[connection signal="pressed" from="dock_node/ButtonCalcInBetweens" to="dock_node" method="_on_button_calc_in_betweens_pressed"]
-[connection signal="pressed" from="dock_node/ButtonSaveIR" to="dock_node" method="_on_button_play_ir_pressed"]
-[connection signal="pressed" from="dock_node/ButtonSaveIR" to="dock_node" method="_on_button_stop_sim_pressed"]
-[connection signal="pressed" from="dock_node/ButtonAddAccmat" to="dock_node" method="_on_button_add_accmat_pressed"]
-[connection signal="pressed" from="dock_node/ButtonImport3D" to="dock_node" method="_on_button_import_3d_pressed"]
+[connection signal="pressed" from="dock_node/Panel/ButtonSpawn" to="dock_node" method="_on_button_spawn_pressed"]
+[connection signal="toggled" from="dock_node/Panel/OptimizeCheckBox" to="dock_node" method="_on_optimize_check_box_toggled"]
+[connection signal="pressed" from="dock_node/Panel/ButtonStartSim2" to="dock_node" method="_on_button_start_sim_pressed"]
+[connection signal="pressed" from="dock_node/Panel/ButtonStopSim" to="dock_node" method="_on_button_stop_sim_pressed"]
+[connection signal="pressed" from="dock_node/Panel/ButtonCalcInBetweens" to="dock_node" method="_on_button_calc_in_betweens_pressed"]
+[connection signal="pressed" from="dock_node/Panel/ButtonSaveIR" to="dock_node" method="_on_button_stop_sim_pressed"]
+[connection signal="pressed" from="dock_node/Panel/ButtonSaveIR" to="dock_node" method="_on_button_play_ir_pressed"]
+[connection signal="pressed" from="dock_node/Panel/ButtonAddAccmat" to="dock_node" method="_on_button_add_accmat_pressed"]
+[connection signal="pressed" from="dock_node/Panel/ButtonRaytrace" to="dock_node" method="_on_button_add_accmat_pressed"]
+[connection signal="pressed" from="dock_node/Panel/ButtonRaytrace" to="dock_node" method="_on_button_raytrace_pressed"]
+[connection signal="pressed" from="dock_node/Panel/ButtonImport3D" to="dock_node" method="_on_button_import_3d_pressed"]
