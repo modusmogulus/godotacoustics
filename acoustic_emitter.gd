@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 						get_tree().get_root().add_child(p)
 						p.velocity = Vector3(result.position - global_position).normalized()*1000
 						p.look_at(p.velocity*1000)
-						p.global_position = global_position - Vector3(result.position - global_position).normalized()
+						p.global_position = global_position + Vector3(result.position - global_position).normalized()
 						IRCalcGlobalScene.emitters_created += 1
 			else:
 				is_optimizing = false

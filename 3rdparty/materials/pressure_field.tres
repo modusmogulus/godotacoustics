@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d4i3xqpw5reo8"]
 
-[ext_resource type="Shader" uid="uid://c53bjxhpmlo3f" path="res://addons/ircalc/3rdparty/shaders/shield.gdshader" id="1_45sxd"]
+[ext_resource type="Shader" uid="uid://c53bjxhpmlo3f" path="res://addons/ircalc/3rdparty/shaders/vis_soundwaves.gdshader" id="1_45sxd"]
 
 [resource]
 render_priority = 0

@@ -84,7 +84,7 @@ layout_mode = 2
 theme = ExtResource("2_x7ui4")
 theme_type_variation = &"LCD"
 min_value = 4.0
-max_value = 512.0
+max_value = 2048.0
 value = 256.0
 rounded = true
 update_on_text_changed = true
@@ -298,7 +298,7 @@ offset_top = 283.0
 offset_right = 241.0
 offset_bottom = 300.0
 theme = ExtResource("2_x7ui4")
-text = "109/167"
+text = "0/256"
 uppercase = true
 
 [node name="Timer" type="Timer" parent="dock_node/Panel"]
@@ -315,6 +315,6 @@ ignore_time_scale = true
 [connection signal="pressed" from="dock_node/Panel/ButtonSaveIR" to="dock_node" method="_on_button_play_ir_pressed"]
 [connection signal="pressed" from="dock_node/Panel/ButtonSaveIR" to="dock_node" method="_on_button_stop_sim_pressed"]
 [connection signal="pressed" from="dock_node/Panel/ButtonAddAccmat" to="dock_node" method="_on_button_add_accmat_pressed"]
-[connection signal="pressed" from="dock_node/Panel/ButtonRaytrace" to="dock_node" method="_on_button_raytrace_pressed"]
 [connection signal="pressed" from="dock_node/Panel/ButtonRaytrace" to="dock_node" method="_on_button_add_accmat_pressed"]
+[connection signal="pressed" from="dock_node/Panel/ButtonRaytrace" to="dock_node" method="_on_button_raytrace_pressed"]
 [connection signal="pressed" from="dock_node/Panel/ButtonImport3D" to="dock_node" method="_on_button_import_3d_pressed"]

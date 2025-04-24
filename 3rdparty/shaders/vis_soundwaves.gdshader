@@ -21,7 +21,7 @@ uniform float rim_power : hint_range(1.0, 10.0) = 3.0;
 uniform vec3 color : source_color;
 
 void fragment() {
-	
+
     float rim = 1.0 - dot(NORMAL, VIEW);
     rim = pow(rim, rim_power);
 
@@ -43,6 +43,6 @@ void fragment() {
 	else if (rings > 0.0){
 		ALBEDO = ring_color*albs;
 		ALPHA = smooth_edge ? blend_alpha : alps;
-		
+
 	}
 }
